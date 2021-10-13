@@ -9,10 +9,10 @@ const ExpenseItem = (props) => {
   // title points to props.title, 
   // setTitle is function for changing it
   const [title, setTitle] = useState(props.title);
-
+  console.log('Expense item evaluated by React');
   const clickHandler = () => {
     setTitle('Updated');
-    console.log('You clicked me');
+    console.log(title);
   }
 
   return (
