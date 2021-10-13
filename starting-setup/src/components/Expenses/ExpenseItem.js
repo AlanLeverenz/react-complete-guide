@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import ExpenseDate from './ExpenseDate';
 import Card from '../UI/Card';
@@ -6,11 +6,15 @@ import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
 
-  let title = props.title;
+  // title points to props.title, 
+  // setTitle is function for changing it
+  const [title, setTitle] = useState(props.title);
 
   const clickHandler = () => {
+    setTitle('Updated');
     console.log('You clicked me');
   }
+
   return (
     <Card className='expense-item'>
       <ExpenseDate date={props.date} />
