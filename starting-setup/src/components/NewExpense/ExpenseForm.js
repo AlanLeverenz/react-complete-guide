@@ -16,29 +16,35 @@ const ExpenseForm = () => {
 
   const titleChangeHandler = (event) => {
     // setEnteredTitle(event.target.value);
-    setUserInput({
-      ...userInput,  // pulls out all the key-value pairs
-      // use : because it is an object
-      enteredTitle: event.target.value, // overwrites the title
-    });
+    // setUserInput({
+    //   ...userInput, 
+    //   enteredTitle: event.target.value
+    // });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTitle: event.target.value };
+    })
   };
 
   const amountChangeHandler = (event) => {
     // setEnteredAmount(event.target.value);
-    setUserInput({
-      ...userInput,  // pulls out all the key-value pairs
-      // use : because it is an object
-      enteredAmount: event.target.value, // overwrites the title
-    });
+    // setUserInput({
+    //   ...userInput, 
+    //   enteredAmount: event.target.value
+    // });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredAmount: event.target.value };
+    })
   };
 
   const dateChangeHandler = (event) => {
     // setEnteredDate(event.target.value);
-    setUserInput({
-      ...userInput,  // pulls out all the key-value pairs
-      // use : because it is an object
-      enteredDate: event.target.value, // overwrites the title
-    });
+    // setUserInput({
+    //   ...userInput, 
+    //   enteredDate: event.target.value
+    // });
+    setUserInput((prevState) => {
+      return { ...prevState, enteredDate: event.target.value };
+    })
   };
 
   return (
