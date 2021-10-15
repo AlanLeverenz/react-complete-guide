@@ -4,20 +4,41 @@ import './ExpenseForm.css';
 
 const ExpenseForm = () => {
 
-  const [enteredTitle, setEnteredTitle] = useState('');
-  const [enteredAmount, setEnteredAmount] = useState('');
-  const [enteredDate, setEnteredDate] = useState('');
+  // const [enteredTitle, setEnteredTitle] = useState('');
+  // const [enteredAmount, setEnteredAmount] = useState('');
+  // const [enteredDate, setEnteredDate] = useState('');
+
+  const [userInput, setUserInput] = useState({
+    enteredTitle: '',
+    enteredAmount: '',
+    enteredDate: ''
+  });
 
   const titleChangeHandler = (event) => {
-    setEnteredTitle(event.target.value);
+    // setEnteredTitle(event.target.value);
+    setUserInput({
+      ...userInput,  // pulls out all the key-value pairs
+      // use : because it is an object
+      enteredTitle: event.target.value, // overwrites the title
+    });
   };
 
   const amountChangeHandler = (event) => {
-    setEnteredAmount(event.target.value);
+    // setEnteredAmount(event.target.value);
+    setUserInput({
+      ...userInput,  // pulls out all the key-value pairs
+      // use : because it is an object
+      enteredAmount: event.target.value, // overwrites the title
+    });
   };
 
   const dateChangeHandler = (event) => {
-    setEnteredDate(event.target.value);
+    // setEnteredDate(event.target.value);
+    setUserInput({
+      ...userInput,  // pulls out all the key-value pairs
+      // use : because it is an object
+      enteredDate: event.target.value, // overwrites the title
+    });
   };
 
   return (
