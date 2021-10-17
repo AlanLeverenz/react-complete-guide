@@ -57,6 +57,9 @@ const ExpenseForm = () => {
     };
 
     console.log(expenseData);
+    setEnteredTitle(''); // sets form field to empty string
+    setEnteredAmount(''); // sets form field to empty string
+    setEnteredDate(''); // sets form field to empty string
   };
 
   return (
@@ -66,6 +69,7 @@ const ExpenseForm = () => {
           <label>Title</label>
           <input
             type='text'
+            value={enteredTitle} // using value for two-way binding
             onChange={titleChangeHandler} />
         </div>
         <div className='new-expense__control'>
@@ -74,6 +78,7 @@ const ExpenseForm = () => {
             type='number'
             min='0.01'
             step='0.01'
+            value={enteredAmount}
             onChange={amountChangeHandler} />
         </div>
         <div className='new-expense__control'>
@@ -82,6 +87,7 @@ const ExpenseForm = () => {
             type='date'
             min='2019-01-01'
             max='2022-12-31'
+            value={enteredDate}
             onChange={dateChangeHandler} />
         </div>
       </div>
