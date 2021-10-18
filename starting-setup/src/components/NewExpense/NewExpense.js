@@ -10,8 +10,9 @@ const NewExpense = (props) => {
       ...enteredExpenseData,
       id: Math.random().toString()
     };
-    // console.log(expenseData);
-    props.onAddExpense(expenseData);
+    console.log('In NewExpense');
+    console.log(expenseData);
+    props.onAddExpense(expenseData); // prop from App.js
   }
 
   // saveExpenseDataHandler is used as a pointer to the function
