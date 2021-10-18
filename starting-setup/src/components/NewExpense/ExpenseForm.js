@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 
   const [enteredTitle, setEnteredTitle] = useState('');
   const [enteredAmount, setEnteredAmount] = useState('');
@@ -56,7 +56,8 @@ const ExpenseForm = () => {
       date: new Date(enteredDate) // parses into a date object
     };
 
-    console.log(expenseData);
+    // console.log(expenseData);
+    props.onSaveExpenseData(expenseData); // function is now executed
     setEnteredTitle(''); // sets form field to empty string
     setEnteredAmount(''); // sets form field to empty string
     setEnteredDate(''); // sets form field to empty string
@@ -70,6 +71,7 @@ const ExpenseForm = () => {
           <input
             type='text'
             value={enteredTitle} // using value for two-way binding
+            // titleChangeHandler is a pointer, React adds a listener
             onChange={titleChangeHandler} />
         </div>
         <div className='new-expense__control'>
