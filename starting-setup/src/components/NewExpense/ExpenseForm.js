@@ -56,8 +56,8 @@ const ExpenseForm = (props) => {
       date: new Date(enteredDate) // parses into a date object
     };
 
-    console.log('In ExpenseForm');
-    console.log(expenseData);
+    // console.log('In ExpenseForm');
+    // console.log(expenseData);
     props.onSaveExpenseData(expenseData); // prop from NewExpense
     setEnteredTitle(''); // sets form field to empty string
     setEnteredAmount(''); // sets form field to empty string

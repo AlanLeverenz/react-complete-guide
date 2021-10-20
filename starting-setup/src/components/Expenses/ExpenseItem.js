@@ -6,15 +6,6 @@ import './ExpenseItem.css';
 
 const ExpenseItem = (props) => {
 
-  // title points to props.title, 
-  // setTitle is function for changing it
-  // const [title, setTitle] = useState(props.title);
-  // console.log('Expense item evaluated by React');
-  // const clickHandler = () => {
-  //   setTitle('Updated');
-  //   console.log(title);
-  // }
-
   return (
     <Card className='expense-item'>
       <ExpenseDate date={props.date} />

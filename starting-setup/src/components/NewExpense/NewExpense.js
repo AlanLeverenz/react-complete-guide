@@ -10,8 +10,8 @@ const NewExpense = (props) => {
       ...enteredExpenseData,
       id: Math.random().toString()
     };
-    console.log('In NewExpense');
-    console.log(expenseData);
+    // console.log('In NewExpense');
+    // console.log(expenseData);
     props.onAddExpense(expenseData); // prop from App.js
   }
 
