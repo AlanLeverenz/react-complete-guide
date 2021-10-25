@@ -20,7 +20,7 @@ const Expenses = (props) => {
           selected={filteredYear}
           onChangeFilter={filterChangeHandler} />
         {props.items.map((expense) => (
-          <ExpenseItem key={Math.random() * 10}
+          <ExpenseItem key={expense.id}
             title={expense.title}
             amount={expense.amount}
             date={expense.date}
