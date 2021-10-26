@@ -35,6 +35,7 @@ function App() {
     });
   };
 
+  console.log(expenses);
   // return React.createElement (
   // 'div',
   // {},
