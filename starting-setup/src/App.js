@@ -35,13 +35,7 @@ function App() {
     });
   };
 
-  console.log(expenses);
-  // return React.createElement (
-  // 'div',
-  // {},
-  // React.createElement('h2', {}, "Let's get started!"),
-  // React.createElement(Expenses, { items: expenses })
-  // )
+  // console.log(expenses);
 
   return (
     <div>
