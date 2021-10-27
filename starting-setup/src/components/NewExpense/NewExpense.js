@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import ExpenseForm from './ExpenseForm';
 import './NewExpense.css';
 
 const NewExpense = (props) => {
+  const [editMode, setEditMode] = useState(false);
 
   const saveExpenseDataHandler = (enteredExpenseData) => {
     const expenseData = {
       ...enteredExpenseData,
-      id: Math.random().toString()
+      id: Math.random().toString(),
     };
-    // console.log('In NewExpense');
-    // console.log(expenseData);
-    props.onAddExpense(expenseData); // prop from App.js
-  }
+    props.onAddExpense(expenseData);
+    setEditMode(false);
+  };
 
-  // saveExpenseDataHandler is used as a pointer to the function
-  // it is passed to the ExpenseForm component by the prop onSaveExpenseData
+  const enableEditingHandler = () => {
+    setEditMode(true);
+  };
+
+  const disableEditingHandler = () => {
+    setEditMode(false);
+  };
+
   return (
     <div className='new-expense'>
-      <ExpenseForm onSaveExpenseData={saveExpenseDataHandler} />
+      {!editMode && (
+        <button onClick={enableEditingHandler}>Add New Expense</button>
+      )}
+      {editMode && (
+        <ExpenseForm
+          onSaveExpenseData={saveExpenseDataHandler}
+          onCancel={disableEditingHandler}
+        />
+      )}
     </div>
   );
 };

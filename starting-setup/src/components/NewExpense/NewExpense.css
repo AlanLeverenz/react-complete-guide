@@ -20,6 +20,17 @@
   margin-right: 1rem;
 }
 
+.cancel-expense button {
+  font: inherit;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px solid #a750d0;
+  background-color: #a750d0;
+  color: white;
+  border-radius: 12px;
+  margin-right: 1rem;
+}
+
 .new-expense button:hover,
 .new-expense button:active {
   background-color: #510674;

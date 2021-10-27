@@ -20,13 +20,12 @@ const DUMMY_EXPENSES = [
   {
     id: 'e4',
     title: 'New Desk (Wooden)',
-    amount: 450.95,
+    amount: 450,
     date: new Date(2021, 5, 12),
   },
 ];
 
-function App() {
-
+const App = () => {
   const [expenses, setExpenses] = useState(DUMMY_EXPENSES);
 
   const addExpenseHandler = (expense) => {
@@ -35,7 +34,12 @@ function App() {
     });
   };
 
-  // console.log(expenses);
+  // return React.createElement(
+  //   'div',
+  //   {},
+  //   React.createElement('h2', {}, "Let's get started!"),
+  //   React.createElement(Expenses, { items: expenses })
+  // );
 
   return (
     <div>
@@ -43,6 +47,6 @@ function App() {
       <Expenses items={expenses} />
     </div>
   );
-}
+};
 
 export default App;

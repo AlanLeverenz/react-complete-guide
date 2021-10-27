@@ -53,8 +53,8 @@ const ExpenseForm = (props) => {
     const expenseData = {
       title: enteredTitle,
       amount: enteredAmount,
-      date: new Date(enteredDate) // parses into a date object
-    };
+      date: new Date(enteredDate)
+    }; // parses into a date object
 
     // console.log('In ExpenseForm');
     // console.log(expenseData);
@@ -63,6 +63,12 @@ const ExpenseForm = (props) => {
     setEnteredAmount(''); // sets form field to empty string
     setEnteredDate(''); // sets form field to empty string
   };
+
+  // return (
+  //   <div className='new-expense__actions'>
+  //     <button type='submit'>Add Expense</button>
+  //   </div>
+  // )
 
   return (
     <form onSubmit={submitHandler}>
@@ -94,11 +100,14 @@ const ExpenseForm = (props) => {
             onChange={dateChangeHandler} />
         </div>
       </div>
+
       <div className='new-expense__actions'>
+        <button type='button' onClick={props.onCancel}>Cancel</button>
         <button type='submit'>Add Expense</button>
       </div>
     </form>
   );
-};
+
+}
 
 export default ExpenseForm;
