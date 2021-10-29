@@ -24,7 +24,7 @@ const CourseInput = props => {
     <form onSubmit={formSubmitHandler}>
       <div className="form-control">
         <label style={{ color: !isValid ? 'red' : 'black' }}>Course Goal</label>
-        <input type="text" style={{ borderColor: !isValid ? 'red' : 'black' }} onChange={goalInputChangeHandler} />
+        <input type="text" style={{ borderColor: !isValid ? 'red' : 'black', background: !isValid ? 'salmon' : 'transparent' }} onChange={goalInputChangeHandler} />
       </div>
       <Button type="submit">Add Goal</Button>
     </form>
