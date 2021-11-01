@@ -9,13 +9,13 @@ import './CourseInput.css';
 const FormControl = styled.div`
   margin: 0.5rem 0;
 
-  &:label {
+  & label {
     font-weight: bold;
     display: block;
     margin-bottom: 0.5rem;
   }
 
-  &:input {
+  & input {
     display: block;
     width: 100%;
     border: 1px solid #ccc;
@@ -24,18 +24,18 @@ const FormControl = styled.div`
     padding: 0 0.25rem;
   }
 
-  &:input:focus {
+  & input:focus {
     outline: none;
     background: #fad0ec;
     border-color: #8b005d;
   }
 
-  &:invalid input {
+  & invalid input {
     border-color: red;
     background: rgb(252, 175, 175)
   }
 
-  &:invalid label {
+  & invalid label {
     color: red;
   }
 `;
