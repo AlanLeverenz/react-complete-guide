@@ -30,12 +30,12 @@ const FormControl = styled.div`
     border-color: #8b005d;
   }
 
-  & invalid input {
+  &.invalid input {
     border-color: red;
     background: rgb(252, 175, 175)
   }
 
-  & invalid label {
+  &.invalid label {
     color: red;
   }
 `;
