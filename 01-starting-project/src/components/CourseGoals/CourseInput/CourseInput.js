@@ -6,6 +6,7 @@ import './CourseInput.css';
 
 // remove selectors in a styled div (styled doesn't need them)
 // and use pseudo selectors for the classes with tags, ids, classes)
+// can insert expressions to determine css values
 const FormControl = styled.div`
   margin: 0.5rem 0;
 
@@ -13,12 +14,14 @@ const FormControl = styled.div`
     font-weight: bold;
     display: block;
     margin-bottom: 0.5rem;
+    color: ${props => (props.invalid ? 'red' : 'black')};
   }
 
   & input {
     display: block;
     width: 100%;
-    border: 1px solid #ccc;
+    border: 1px solid ${props => (props.invalid ? 'red' : '#ccc')};
+    background: ${props => props.invalid ? 'rgb(252, 175, 175)' : 'transparent'};
     font: inherit;
     line-height: 1.5rem;
     padding: 0 0.25rem;
@@ -28,15 +31,6 @@ const FormControl = styled.div`
     outline: none;
     background: #fad0ec;
     border-color: #8b005d;
-  }
-
-  &.invalid input {
-    border-color: red;
-    background: rgb(252, 175, 175)
-  }
-
-  &.invalid label {
-    color: red;
   }
 `;
 
@@ -61,9 +55,10 @@ const CourseInput = props => {
   };
 
   // the back-tick accepts text and expressions ${}
+  // can pass props to the styled component (FormControl)
   return (
     <form onSubmit={formSubmitHandler}>
-      <FormControl className={!isValid && 'invalid'}>
+      <FormControl invalid={!isValid}>
         <label>Course Goal</label>
         <input type="text" onChange={goalInputChangeHandler} />
       </FormControl>
