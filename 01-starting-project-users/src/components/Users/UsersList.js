@@ -5,14 +5,16 @@ import classes from './UsersList.module.css';
 
 const UsersList = props => {
   // map function creates a JSX element for each user
+  // insert key into each li item
   return (
     <Card className={classes.users}>
       <ul>
         {props.users.map(user => (
-          <li>
+          <li key={user.id} >
             {user.name} ({user.age} years old)
           </li>
-        ))}
+        )
+        )}
       </ul>
     </Card>
   );
