@@ -12,9 +12,20 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes('@') && enteredPassword.trim().length > 6
-    );
+    const identifier = setTimeout(() => {
+      console.log('CHECKING FORM VALIDITY');
+      setFormIsValid(
+        enteredEmail.includes('@') && enteredPassword.trim().length > 6
+      );
+    }, 500);
+
+    // a cleanup function that runs before every side effect function
+    // clearing the last timer before a new one is set
+    return () => {
+      console.log('CLEANUP');
+      clearTimeout(identifier);
+    };
+
   }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
