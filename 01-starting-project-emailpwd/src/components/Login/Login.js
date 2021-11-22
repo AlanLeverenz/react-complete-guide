@@ -12,6 +12,10 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
+    console.log('EFFECT RUNNING');
+  })
+
+  useEffect(() => {
     const identifier = setTimeout(() => {
       console.log('CHECKING FORM VALIDITY');
       setFormIsValid(
@@ -19,8 +23,8 @@ const Login = (props) => {
       );
     }, 500);
 
-    // a cleanup function that runs before every side effect function
-    // clearing the last timer before a new one is set
+    // a return cleanup function that runs before every side effect function
+    // it clears the last timer before a new one is set
     return () => {
       console.log('CLEANUP');
       clearTimeout(identifier);
