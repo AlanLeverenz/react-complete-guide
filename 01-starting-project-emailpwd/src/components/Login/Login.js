@@ -13,7 +13,10 @@ const Login = (props) => {
 
   useEffect(() => {
     console.log('EFFECT RUNNING');
-  })
+  }, [enteredPassword]);
+
+  // without dependencies useEffect will run each time the parent function runs
+  // with dependencies it runs when there is a change
 
   useEffect(() => {
     const identifier = setTimeout(() => {
