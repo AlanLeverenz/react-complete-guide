@@ -11,13 +11,22 @@ const Login = (props) => {
   const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
+  // this useEffect function runs after every component render cycle (i.e., refresh)
+  // with no dependency it only runs once
+  // with a dependency it runs if the dependency changes is state
   useEffect(() => {
     console.log('EFFECT RUNNING');
+    // returned cleanup function runs before the useEffect function runs (i.e., console.log EFFECT RUNNING)
+    return () => {
+      console.log('EFFECT CLEANUP')
+    }
+    // with empty array the return function only runs when the component is removed from the DOM
   }, [enteredPassword]);
 
   // without dependencies useEffect will run each time the parent function runs
-  // with dependencies it runs when there is a change
+  // with dependencies it runs when there is a change to the dependency
 
+  // this runs when the user inputs
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log('CHECKING FORM VALIDITY');
