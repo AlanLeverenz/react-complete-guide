@@ -8,7 +8,9 @@ import Button from '../UI/Button/Button';
 const emailReducer = (state, action) => {
   // returns a new state
   if (action.type === 'USER_INPUT') {
-    return { value: action.val, isValid: action.val.includes('@') };
+    return {
+      value: action.val, isValid: action.val.includes('@')
+    };
   }
   if (action.type === 'INPUT_BLUR') {
     return {
@@ -25,12 +27,14 @@ const emailReducer = (state, action) => {
 const passwordReducer = (state, action) => {
   // returns a new state
   if (action.type === 'USER_INPUT') {
-    return { value: action.val, isValid: action.val.value.trim().length > 6 };
+    return {
+      value: action.val, isValid: action.val.value.trim().length > 6
+    };
   }
   if (action.type === 'INPUT_BLUR') {
     return {
       value: state.value, isValid: state.value.trim().length > 6
-    }
+    };
   }
   return {
     value: '',
@@ -60,7 +64,7 @@ const Login = (props) => {
 
   // this useEffect function runs after every component render cycle (i.e., refresh)
   // with no dependency it only runs once
-  // with a dependency it runs if the dependency changes is state
+  // with a dependency it runs if the dependency changes its state
   useEffect(() => {
     console.log('EFFECT RUNNING');
     // returned cleanup function runs before the useEffect function runs (i.e., console.log EFFECT RUNNING)
@@ -74,88 +78,88 @@ const Login = (props) => {
   // with dependencies it runs when there is a change to the dependency
 
   // this runs when the user inputs
-  // useEffect(() => {
-  //   const identifier = setTimeout(() => {
-  //     console.log('CHECKING FORM VALIDITY');
-  //     setFormIsValid(
-  //       enteredEmail.includes('@') && enteredPassword.trim().length > 6
-  //     );
-  //   }, 500);
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      console.log('CHECKING FORM VALIDITY');
+      setFormIsValid(
+        emailState.isValid && passwordState.isValid
+      );
+    }, 500);
 
-  //   // a return cleanup function that runs before every side effect function
-  //   // it clears the last timer before a new one is set
-  //   return () => {
-  //     console.log('CLEANUP');
-  //     clearTimeout(identifier);
-  //   };
+    // a return cleanup function that runs before every side effect function
+    // it clears the last timer before a new one is set
+    return () => {
+      console.log('CLEANUP');
+      clearTimeout(identifier);
+    };
 
-  // }, [enteredEmail, enteredPassword]);
+  }, [emailState, passwordState]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
 
-    setFormIsValid(
-      event.target.value.includes('@') && passwordState.isValid);
-  };
+    //   setFormIsValid(
+    //     event.target.value.includes('@') && passwordState.isValid);
+    // };
 
-  const passwordChangeHandler = (event) => {
-    dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
+    const passwordChangeHandler = (event) => {
+      dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
 
-    setFormIsValid(
-      emailState.isValid && event.target.value.trim().length > 6
+      // setFormIsValid(
+      //   emailState.isValid && event.target.value.trim().length > 6
+      // );
+    };
+
+    const validateEmailHandler = () => {
+      dispatchEmail({ type: 'INPUT_BLUR' });
+    };
+
+    const validatePasswordHandler = () => {
+      dispatchPassword({ type: 'INPUT_BLUR' });
+    };
+
+    const submitHandler = (event) => {
+      event.preventDefault();
+      props.onLogin(emailState.value, passwordState.value);
+    };
+
+    return (
+      <Card className={classes.login}>
+        <form onSubmit={submitHandler}>
+          <div
+            className={`${classes.control} ${emailState.isValid === false ? classes.invalid : ''
+              }`}
+          >
+            <label htmlFor="email">E-Mail</label>
+            <input
+              type="email"
+              id="email"
+              value={emailState.value}
+              onChange={emailChangeHandler}
+              onBlur={validateEmailHandler}
+            />
+          </div>
+          <div
+            className={`${classes.control} ${passwordState.isValid === false ? classes.invalid : ''
+              }`}
+          >
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={passwordState.value}
+              onChange={passwordChangeHandler}
+              onBlur={validatePasswordHandler}
+            />
+          </div>
+          <div className={classes.actions}>
+            <Button type="submit" className={classes.btn} disabled={!formIsValid}>
+              Login
+            </Button>
+          </div>
+        </form>
+      </Card>
     );
   };
 
-  const validateEmailHandler = () => {
-    dispatchEmail({ type: 'INPUT_BLUR' });
-  };
-
-  const validatePasswordHandler = () => {
-    dispatchPassword({ type: 'INPUT_BLUR' });
-  };
-
-  const submitHandler = (event) => {
-    event.preventDefault();
-    props.onLogin(emailState.value, passwordState.value);
-  };
-
-  return (
-    <Card className={classes.login}>
-      <form onSubmit={submitHandler}>
-        <div
-          className={`${classes.control} ${emailState.isValid === false ? classes.invalid : ''
-            }`}
-        >
-          <label htmlFor="email">E-Mail</label>
-          <input
-            type="email"
-            id="email"
-            value={emailState.value}
-            onChange={emailChangeHandler}
-            onBlur={validateEmailHandler}
-          />
-        </div>
-        <div
-          className={`${classes.control} ${passwordState.isValid === false ? classes.invalid : ''
-            }`}
-        >
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={passwordState.value}
-            onChange={passwordChangeHandler}
-            onBlur={validatePasswordHandler}
-          />
-        </div>
-        <div className={classes.actions}>
-          <Button type="submit" className={classes.btn} disabled={!formIsValid}>
-            Login
-          </Button>
-        </div>
-      </form>
-    </Card>
-  );
-};
-
-export default Login;
+  export default Login;
