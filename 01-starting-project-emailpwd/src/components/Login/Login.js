@@ -77,12 +77,17 @@ const Login = (props) => {
   // without dependencies useEffect will run each time the parent function runs
   // with dependencies it runs when there is a change to the dependency
 
+  // alias assignment, not a value assignment
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
+
+
   // this runs when the user inputs
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log('CHECKING FORM VALIDITY');
       setFormIsValid(
-        emailState.isValid && passwordState.isValid
+        emailIsValid && passwordIsValid
       );
     }, 500);
 
@@ -93,7 +98,7 @@ const Login = (props) => {
       clearTimeout(identifier);
     };
 
-  }, [emailState, passwordState]);
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
@@ -161,5 +166,6 @@ const Login = (props) => {
       </Card>
     );
   };
+}
 
-  export default Login;
+export default Login;
