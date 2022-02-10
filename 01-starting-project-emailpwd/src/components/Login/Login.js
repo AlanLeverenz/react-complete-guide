@@ -25,21 +25,13 @@ const emailReducer = (state, action) => {
 
 // password
 const passwordReducer = (state, action) => {
-  // returns a new state
   if (action.type === 'USER_INPUT') {
-    return {
-      value: action.val, isValid: action.val.value.trim().length > 6
-    };
+    return { value: action.val, isValid: action.val.trim().length > 6 };
   }
   if (action.type === 'INPUT_BLUR') {
-    return {
-      value: state.value, isValid: state.value.trim().length > 6
-    };
+    return { value: state.value, isValid: state.value.trim().length > 6 };
   }
-  return {
-    value: '',
-    isValid: false
-  }
+  return { value: '', isValid: false };
 };
 
 const Login = (props) => {
