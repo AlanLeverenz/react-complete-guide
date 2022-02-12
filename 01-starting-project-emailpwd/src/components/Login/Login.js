@@ -4,26 +4,16 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 
-// emailReducer function can be set outside the component function
 const emailReducer = (state, action) => {
-  // returns a new state
   if (action.type === 'USER_INPUT') {
-    return {
-      value: action.val, isValid: action.val.includes('@')
-    };
+    return { value: action.val, isValid: action.val.includes('@') };
   }
   if (action.type === 'INPUT_BLUR') {
-    return {
-      value: state.value, isValid: state.value.includes('@')
-    }
+    return { value: state.value, isValid: state.value.includes('@') };
   }
-  return {
-    value: '',
-    isValid: false
-  }
+  return { value: '', isValid: false };
 };
 
-// password
 const passwordReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
     return { value: action.val, isValid: action.val.trim().length > 6 };
@@ -41,54 +31,36 @@ const Login = (props) => {
   // const [passwordIsValid, setPasswordIsValid] = useState();
   const [formIsValid, setFormIsValid] = useState(false);
 
-  // use reducer handles value and validity
-  // [state, action] = function()
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: '',
-    isValid: null
+    isValid: null,
   });
-
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
     value: '',
-    isValid: null
+    isValid: null,
   });
 
-  // this useEffect function runs after every component render cycle (i.e., refresh)
-  // with no dependency it only runs once
-  // with a dependency it runs if the dependency changes its state
   useEffect(() => {
     console.log('EFFECT RUNNING');
-    // returned cleanup function runs before the useEffect function runs (i.e., console.log EFFECT RUNNING)
+
     return () => {
-      console.log('EFFECT CLEANUP')
-    }
-    // with empty array the return function only runs when the component is removed from the DOM
+      console.log('EFFECT CLEANUP');
+    };
   }, []);
 
-  // without dependencies useEffect will run each time the parent function runs
-  // with dependencies it runs when there is a change to the dependency
-
-  // alias assignment, not a value assignment
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
-
-  // this runs when the user inputs
   useEffect(() => {
     const identifier = setTimeout(() => {
-      console.log('CHECKING FORM VALIDITY');
-      setFormIsValid(
-        emailIsValid && passwordIsValid
-      );
+      console.log('Checking form validity!');
+      setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
-    // a return cleanup function that runs before every side effect function
-    // it clears the last timer before a new one is set
     return () => {
       console.log('CLEANUP');
       clearTimeout(identifier);
     };
-
   }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
@@ -156,6 +128,5 @@ const Login = (props) => {
     </Card>
   );
 };
-
 
 export default Login;
