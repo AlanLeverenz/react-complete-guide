@@ -15,10 +15,12 @@ function App() {
     setCartIsShown(false);
   }
 
+  // passing showCartHandler pointer to the Header as a prop
+  // passing hideCartHandler point to the Cart as a prop
   return (
     <Fragment>
-      {cartIsShown && <Cart />}
-      <Header />
+      {cartIsShown && <Cart onClose={hideCartHandler} />}
+      <Header onShowCart={showCartHandler} />
       <main>
         <Meals />
       </main>
