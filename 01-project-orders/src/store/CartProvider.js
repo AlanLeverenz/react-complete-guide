@@ -15,6 +15,7 @@ const cartReducer = (state, action) => {
     const existingCartItemIndex = state.items.findIndex(
       item => item.id === action.item.id
     );
+
     const existingCartItem = state.items[existingCartItemIndex];
     let updatedItems;
 
@@ -30,12 +31,43 @@ const cartReducer = (state, action) => {
     } else { // if a new item
       updatedItems = state.items.concat(action.item);
     }
+
     // return the updated items and totalAmount
     return {
       items: updatedItems,
       totalAmount: updatedTotalAmount
     };
-  } // if action is not ADD then return defaultCartState
+  }
+
+  // check if action.type is to remove
+  // check if there is 1 or more
+  if (action.type === 'REMOVE') {
+    // get existing Index of items
+    const existingCartItemIndex = state.items.findIndex(
+      item => item.id === action.id
+    );
+    // get existingItem and modify updatedTotalAmount
+    const existingItem = state.items[existingCartItemIndex];
+    const updatedTotalAmount = state.totalAmount - existingItem.price;
+    let updatedItems;
+    // if one item, then filter it out of the updatedItems array
+    if (existingItem.amount === 1) {
+      updatedItems = state.items.filter(item => item.id !== action.id);
+    } else {
+      // updated the amount and the specific item (type) in the array of items
+      const updatedItem = { ...existingItem, amount: existingItem.amount - 1 };
+      updatedItems = [...state.items];
+      updatedItems[existingCartItemIndex] = updatedItem;
+    }
+    // return items and totalAmount
+    return {
+      items: updatedItems,
+      totalAmount: updatedTotalAmount
+    }
+  }
+
+
+  // if action is not ADD then return defaultCartState
   return (
     defaultCartState
   )
