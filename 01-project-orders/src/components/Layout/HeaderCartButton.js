@@ -9,14 +9,13 @@ const HeaderCartButton = props => {
   const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
   const cartCtx = useContext(CartContext);
-
-  const numberOfCartItems = cartCtx.items.reduce((curNumber, item) => {
-    return curNumber + item.amount;
-  }, 0);
-
   // use deconstruction to isolate the items in the cartCtx
   // so that useEffect only occurs when items change
   const { items } = cartCtx;
+
+  const numberOfCartItems = items.reduce((curNumber, item) => {
+    return curNumber + item.amount;
+  }, 0);
 
   const btnClasses = `${classes.button} ${btnIsHighlighted ? classes.bump : ''}`;
 
@@ -26,6 +25,14 @@ const HeaderCartButton = props => {
       return;
     }
     setBtnIsHighlighted(true);
+
+    const timer = setTimeout(() => {
+      setBtnIsHighlighted(false);
+    }, 300);
+    // automatically runs with useEffect
+    return () => {
+      clearTimeout(timer);
+    };
   }, [items]); // items is the dependency that useEffect is focused on
 
   return <button className={btnClasses} onClick={props.onClick}>
