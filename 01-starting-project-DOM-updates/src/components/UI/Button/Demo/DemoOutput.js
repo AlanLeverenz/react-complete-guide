@@ -6,4 +6,6 @@ const DemoOutput = (props) => {
   return <MyParagraph>{props.show ? 'This is new!' : ''}</MyParagraph>
 }
 
-export default DemoOutput;
+// for functional components
+// tells React to check for new values. if not, don't re-render this component
+export default React.memo(DemoOutput);
