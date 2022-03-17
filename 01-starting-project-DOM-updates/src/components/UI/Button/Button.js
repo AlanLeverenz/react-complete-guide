@@ -16,4 +16,5 @@ const Button = (props) => {
   );
 };
 
-export default Button;
+// React does not compare functions, objects, arrays, only primitive values
+export default React.memo(Button);
