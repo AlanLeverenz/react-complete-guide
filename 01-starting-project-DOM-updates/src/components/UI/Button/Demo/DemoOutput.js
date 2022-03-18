@@ -7,5 +7,6 @@ const DemoOutput = (props) => {
 }
 
 // for functional components
-// tells React to check for new values. if not, don't re-render this component
+// tells React to check for new values. 
+// if not new, the component will not re-render (be created again)
 export default React.memo(DemoOutput);
