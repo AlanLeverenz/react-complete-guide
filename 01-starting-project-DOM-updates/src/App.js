@@ -15,6 +15,7 @@ function App() {
       setShowParagraph(prevShowParagraph => !prevShowParagraph);
     }
     // overrides useCallBack using a dependency
+    // when it changes, the function is created again
   }, [allowToggle]);
 
   const allowToggleHandler = () => {

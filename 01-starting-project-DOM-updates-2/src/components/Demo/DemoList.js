@@ -3,8 +3,12 @@ import React, { useMemo } from 'react';
 import classes from './DemoList.module.css';
 
 const DemoList = (props) => {
+  // use destructuring to pull items out of props
   const { items } = props;
 
+  // items are a dependency
+  // only if items changes does the sortedList function run
+  // which useMemo has stored in memory
   const sortedList = useMemo(() => {
     console.log('Items sorted');
     return items.sort((a, b) => a - b);
