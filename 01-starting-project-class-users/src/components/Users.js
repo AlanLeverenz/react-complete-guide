@@ -1,7 +1,9 @@
-import { useState, Component } from 'react';
+import { Component } from 'react';
 import User from './User';
 
 import classes from './Users.module.css';
+
+// cannot use hooks in a class-based component
 
 const DUMMY_USERS = [
   { id: 'u1', name: 'Max' },
@@ -14,6 +16,7 @@ const DUMMY_USERS = [
 // and it is always called "state", this.state
 class Users extends Component {
   constructor() {
+    super();
     this.state = {
       showUsers: true,
       more: 'Test'
