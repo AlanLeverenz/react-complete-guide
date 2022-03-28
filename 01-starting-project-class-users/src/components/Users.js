@@ -5,12 +5,6 @@ import classes from './Users.module.css';
 
 // cannot use hooks in a class-based component
 
-// const DUMMY_USERS = [
-//   { id: 'u1', name: 'Max' },
-//   { id: 'u2', name: 'Manuel' },
-//   { id: 'u3', name: 'Julie' },
-// ];
-
 // class needs a render() method
 // in class-based components, state is always an object
 // and it is always called "state", this.state
