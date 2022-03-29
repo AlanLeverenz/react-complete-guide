@@ -12,12 +12,18 @@ class UserFinder extends Component {
   constructor() {
     super();
     this.state = {
-      filteredUsers: DUMMY_USERS,
+      filteredUsers: [],
       searchTerm: ''
     };
   }
 
-  // runs when the state changes - to change the filteredUsers array
+  componentDidMount() {
+    // Send http request...
+    // runs when component mounts
+    this.setState({ filteredUsers: DUMMY_USERS });
+  }
+
+  // runs when the state changes - to change in the filteredUsers array
   // first check if props and state are different or not to avoid infinite loop
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchTerm !== this.state.searchTerm) {
