@@ -8,6 +8,10 @@ import classes from './User.module.css';
 // you can mix and match class and function components
 
 class User extends Component {
+  // componentWillUnmount when it is removed from the DOM
+  componentWillUnmount() {
+    console.log('User will unmount!');
+  }
   render() {
     return <li className={classes.user}>{this.props.name}</li>;
   }
