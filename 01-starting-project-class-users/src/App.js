@@ -12,6 +12,7 @@ function App() {
     users: DUMMY_USERS
   }
 
+  // Provider makes DUMMY_USERS available to the whole app
   return (
     <UsersContext.Provider value={usersContext}>
       <UserFinder />

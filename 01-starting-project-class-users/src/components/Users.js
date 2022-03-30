@@ -48,6 +48,8 @@ class Users extends Component {
   }
 }
 
+export default Users;
+
 // FUNCTIONAL METHOD WITH THE USESTATE HOOK
 // const Users = () => {
 //   const [showUsers, setShowUsers] = useState(true);
@@ -74,4 +76,4 @@ class Users extends Component {
 //   );
 // };
 
-export default Users;
+// export default Users;
