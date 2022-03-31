@@ -18,7 +18,14 @@ class Users extends Component {
   }
 
   componentDidUpdate() {
+    // try {
+    //   someCodeWhichMightFail()
+    // } catch (err) {
+    //   handleError()
+    // }
+
     if (this.props.users.length === 0) {
+      // bubbles up the stack across components.
       throw new Error('No users provided!');
     }
   }
