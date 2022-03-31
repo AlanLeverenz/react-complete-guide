@@ -47,13 +47,14 @@ class UserFinder extends Component {
     this.setState({ searchTerm: event.target.value });
   }
 
+  // wrap ErrorBoundary around components that might throw errors
   render() {
     return (
       <Fragment>
+        <div className={classes.finder}>
+          <input type='search' onChange={this.searchChangeHandler.bind(this)} />
+        </div>
         <ErrorBoundary>
-          <div className={classes.finder}>
-            <input type='search' onChange={this.searchChangeHandler.bind(this)} />
-          </div>
           <Users users={this.state.filteredUsers} />
         </ErrorBoundary>
       </Fragment>
