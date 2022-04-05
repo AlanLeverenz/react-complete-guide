@@ -15,8 +15,8 @@ function App() {
   // })
   // .then(data => {
 
-  // set const with useCallback method for button click
-  // it allows us to add a dependency
+  // set const with useCallback method for the button click
+  // it includes a dependency
   const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
