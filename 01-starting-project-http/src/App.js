@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -10,12 +10,14 @@ function App() {
 
   // function fetchMoviesHandler() {
   //   fetch('https://swapi.dev/api/films/')
-  // .then(response => {
+  // .then(response => {  
   //   return response.json();
   // })
   // .then(data => {
 
-  async function fetchMoviesHandler() {
+  // set const with useCallback method for button click
+  // it allows us to add a dependency
+  const fetchMoviesHandler = useCallback(async () => {
     setIsLoading(true);
     setError(null);
     // try-catch blocks
@@ -43,7 +45,13 @@ function App() {
       setError(error.message);
     }
     setIsLoading(false);
-  }
+  }, []);
+
+  // include function dependency for useEffect 
+  // or will cause an infinite loop
+  useEffect(() => {
+    fetchMoviesHandler()
+  }, [fetchMoviesHandler]);
 
   // const needs to be in the return block to be used
   let content = <p>Found no movies.</p>
