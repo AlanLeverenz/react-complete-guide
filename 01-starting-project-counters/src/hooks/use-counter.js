@@ -15,6 +15,7 @@ const useCounter = (forwards = true) => {
       }
     }, 1000);
     // forwards is parameter that is a dependency 
+    // if forwards never changes the useEffect function will not run again
     return () => clearInterval(interval);
   }, [forwards]);
 
