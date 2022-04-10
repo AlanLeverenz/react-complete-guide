@@ -1,5 +1,6 @@
 {
   "tasks" : [
-    { "text": "A new task!" }
+    { "text": "A new task!" },
+    { "text": "Another task!" }
   ]
 }
