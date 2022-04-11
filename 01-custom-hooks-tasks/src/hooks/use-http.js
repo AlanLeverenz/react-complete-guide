@@ -13,9 +13,10 @@ const useHttp = (requestConfig, applyData) => {
     try {
       const response = await fetch(
         requestConfig.url, {
-        method: requestConfig.method,
-        headers: requestConfig.headers,
-        body: JSON.stringify(requestConfig.body)
+        // no method, header, and body needed for App.js GET 
+        method: requestConfig.method ? requestConfig.method : 'GET',
+        headers: requestConfig.headers ? requestConfig.headers : {},
+        body: requestConfig.body ? JSON.stringify(requestConfig.body) : null
       }
       );
 
@@ -25,7 +26,7 @@ const useHttp = (requestConfig, applyData) => {
 
       const data = await response.json();
       // the component handles how the data is applied
-      // just passing the data as a prop
+      // just passing the data to the component as a prop
       applyData(data);
 
     } catch (err) {
