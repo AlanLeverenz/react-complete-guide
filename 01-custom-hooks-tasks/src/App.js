@@ -8,6 +8,7 @@ function App() {
 
   const [tasks, setTasks] = useState([]);
 
+  // function for generating an array of tasks and updating state
   const transformTasks = tasksObj => {
     const loadedTasks = [];
 
@@ -20,12 +21,16 @@ function App() {
 
   // destructuring to get parameters returned in the custom hook file
   // renaming sendRequest to fetchTasks
+  // useHttp custom hook has two arguments: fetching and transforming
   const { isLoading, error, sendRequest: fetchTasks } = useHttp({ url: 'https://react-custom-hooks-e5688-default-rtdb.firebaseio.com/tasks.json' }, transformTasks);
 
+  // useEffect runs the fetchTasks function when the page loads
   useEffect(() => {
     fetchTasks();
   }, []);
 
+  // the new task is concat'd to the task objects of the previous state
+  // using the state function assigned to change state
   const taskAddHandler = (task) => {
     setTasks((prevTasks) => prevTasks.concat(task));
   };

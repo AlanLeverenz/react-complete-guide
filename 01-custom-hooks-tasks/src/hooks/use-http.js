@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 const useHttp = (requestConfig, applyData) => {
   // requestConfig includes the url, passed from the component
-  // applyData is how the component will use the data
+  // applyData is how the component will use (transform) the data
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -20,13 +20,15 @@ const useHttp = (requestConfig, applyData) => {
       }
       );
 
+      // throwing an Error ends the function
       if (!response.ok) {
         throw new Error('Request failed!');
       }
 
+      // converts data to json format
       const data = await response.json();
       // the component handles how the data is applied
-      // just passing the data to the component as a prop
+      // passing the data transform function pointer to the component
       applyData(data);
 
     } catch (err) {
