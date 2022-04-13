@@ -1,13 +1,18 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
-const useHttp = (requestConfig, applyData) => {
-  // requestConfig includes the url, passed from the component
+const useHttp = () => {
   // applyData is how the component will use (transform) the data
+  // refactored to remove applyData as a parameter (not needed in App.js)
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const sendRequest = async (taskText) => {
+  // useCallback creates a memoization that only runs if things change
+  // to prevent infinite loop with useEffect in App.js
+  // requestConfig includes the url, passed from the component
+  // applyData is no longer a dependency to this overall function
+  // ...because it is received as a parameter (no external dependencies)
+  const sendRequest = useCallback(async (requestConfig, applyData) => {
     setIsLoading(true);
     setError(null);
     try {
@@ -19,6 +24,8 @@ const useHttp = (requestConfig, applyData) => {
         body: requestConfig.body ? JSON.stringify(requestConfig.body) : null
       }
       );
+
+      console.log(requestConfig.url);
 
       // throwing an Error ends the function
       if (!response.ok) {
@@ -35,7 +42,9 @@ const useHttp = (requestConfig, applyData) => {
       setError(err.message || 'Something went wrong!');
     }
     setIsLoading(false);
-  };
+    // requestConfig is now a parameter, not a dependency
+  }, []);
+
   // giving objects for the component to use
   return {
     isLoading,
