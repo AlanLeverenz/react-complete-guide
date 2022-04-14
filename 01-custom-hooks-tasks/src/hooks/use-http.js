@@ -25,7 +25,7 @@ const useHttp = () => {
       }
       );
 
-      console.log(requestConfig.url);
+      // console.log(requestConfig.url);
 
       // throwing an Error ends the function
       if (!response.ok) {

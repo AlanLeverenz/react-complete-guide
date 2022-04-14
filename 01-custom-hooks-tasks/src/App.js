@@ -6,12 +6,11 @@ import useHttp from './hooks/use-http';
 
 function App() {
 
+  // useEffect builds the task array 
   const [tasks, setTasks] = useState([]);
 
   // destructuring to get parameters returned in the custom hook file
   // renaming sendRequest to fetchTasks
-  // useHttp custom hook has two arguments: fetching and transforming
-  // after refactoring transformTasks is only function being passed to useHttp
   const { isLoading, error, sendRequest: fetchTasks } = useHttp();
 
   // useEffect runs the fetchTasks function when the page loads
