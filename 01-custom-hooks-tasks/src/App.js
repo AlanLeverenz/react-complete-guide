@@ -26,6 +26,8 @@ function App() {
       setTasks(loadedTasks);
     });
 
+    // fetchTasks has two arguments, the url and the data transform
+    // fetchTasks dependency avoids infinite loop
     fetchTasks({ url: 'https://react-custom-hooks-e5688-default-rtdb.firebaseio.com/tasks.json' }, transformTasks);
   }, [fetchTasks]);
 
