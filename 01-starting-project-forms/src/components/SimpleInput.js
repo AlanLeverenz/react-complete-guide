@@ -12,6 +12,14 @@ const SimpleInput = (props) => {
     event.preventDefault();
 
     console.log(enteredName);
+
+    const enteredValue = nameInputRef.current.value;
+    console.log(enteredValue);
+
+    // ameInputRef.current.value = ''; // NOT IDEAL, DON'T MANIPULATE THE DOM
+    // clears the input value using its state function
+    // the value is bound to the form (value={enteredName})
+    setEnteredName('');
   }
 
   return (
@@ -22,7 +30,9 @@ const SimpleInput = (props) => {
           ref={nameInputRef}
           type='text'
           id='name'
-          onChange={nameInputChangeHandler} />
+          onChange={nameInputChangeHandler}
+          value={enteredName}
+        />
       </div>
       <div className="form-actions">
         <button>Submit</button>
