@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useEffect } from 'react/cjs/react.production.min';
+import { useEffect, useState } from 'react';
+// import { useEffect } from 'react/cjs/react.production.min';
 
 const SimpleInput = (props) => {
   // const nameInputRef = useRef();
