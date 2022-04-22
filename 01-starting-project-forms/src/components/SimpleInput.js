@@ -15,9 +15,7 @@ const SimpleInput = (props) => {
 
   if (enteredNameIsValid) {
     formIsValid = true;
-  } else {
-    formIsValid = false;
-  }
+  };
 
   // useEffect(() => {
   //   if (enteredNameIsValid) {
