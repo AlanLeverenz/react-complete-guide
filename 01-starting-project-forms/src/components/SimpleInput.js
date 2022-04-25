@@ -44,6 +44,14 @@ const SimpleInput = (props) => {
     setEnteredNameTouched(true);
   }
 
+  const emailInputChangeHandler = event => {
+    setEnteredEmail(event.target.value);
+  }
+
+  const emailInputBlurHandler = event => {
+    setEnteredEmailTouched(true);
+  }
+
   // this function is run every time there is a change in the component
   // so it gets the latest state
   const formSubmissionHandler = event => {
@@ -88,6 +96,18 @@ const SimpleInput = (props) => {
         />
         {nameInputIsInvalid && (
           <p className="error-text">Name must not be empty.</p>)}
+      </div>
+      <div className={nameInputClasses}>
+        <label htmlFor='email'>Your Email</label>
+        <input
+          type='email'
+          id='email'
+          onChange={emailInputChangeHandler}
+          onBlur={emailInputBlurHandler}
+          value={enteredEmail}
+        />
+        {emailInputIsInvalid && (
+          <p className="error-text">Must enter a valid email.</p>)}
       </div>
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
