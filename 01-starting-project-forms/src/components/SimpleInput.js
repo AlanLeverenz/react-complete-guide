@@ -14,7 +14,6 @@ const SimpleInput = (props) => {
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
   // EMAIL VALIDATION
-
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
@@ -65,6 +64,7 @@ const SimpleInput = (props) => {
     }
 
     console.log(enteredName);
+    console.log(enteredEmail);
 
     // const enteredValue = nameInputRef.current.value;
     // console.log(enteredValue);
@@ -79,7 +79,11 @@ const SimpleInput = (props) => {
   }
 
   // conditional class if enteredNameIsValid is true or false
-  const nameInputClasses = nameInputIsInvalid && emailInputIsInvalid
+  const nameInputClasses = nameInputIsInvalid
+    ? 'form-control invalid'
+    : 'form-control';
+
+  const emailInputClasses = emailInputIsInvalid
     ? 'form-control invalid'
     : 'form-control';
 
@@ -97,7 +101,7 @@ const SimpleInput = (props) => {
         {nameInputIsInvalid && (
           <p className="error-text">Name must not be empty.</p>)}
       </div>
-      <div className={nameInputClasses}>
+      <div className={emailInputClasses}>
         <label htmlFor='email'>Your Email</label>
         <input
           type='email'
@@ -107,7 +111,7 @@ const SimpleInput = (props) => {
           value={enteredEmail}
         />
         {emailInputIsInvalid && (
-          <p className="error-text">Must enter a valid email.</p>)}
+          <p className="error-text">Please enter a valid email.</p>)}
       </div>
       <div className="form-actions">
         <button disabled={!formIsValid}>Submit</button>
