@@ -2,20 +2,29 @@ import { useState } from 'react';
 // import { useEffect } from 'react';
 
 const SimpleInput = (props) => {
+
+  // NAME VALIDATION
   // const nameInputRef = useRef();
   const [enteredName, setEnteredName] = useState('');
   // const [enteredNameIsValid, setEnteredNameIsValid] = useState(false);
   const [enteredNameTouched, setEnteredNameTouched] = useState(false);
   // const [formIsValid, setFormIsValid] = useState(false);
 
-  const [enteredEmail, setEnteredEmail] = useState('');
-
   const enteredNameIsValid = enteredName.trim() !== '';
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
+  // EMAIL VALIDATION
+
+  const [enteredEmail, setEnteredEmail] = useState('');
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
+
+  const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const enteredEmailIsValid = enteredEmail.match(mailFormat);
+  const emailInputIsInvalid = !enteredEmailIsValid && enteredEmailTouched;
+
   let formIsValid = false;
 
-  if (enteredNameIsValid) {
+  if (enteredNameIsValid && enteredEmailIsValid) {
     formIsValid = true;
   };
 
@@ -59,7 +68,7 @@ const SimpleInput = (props) => {
   }
 
   // conditional class if enteredNameIsValid is true or false
-  const nameInputClasses = nameInputIsInvalid
+  const nameInputClasses = nameInputIsInvalid && emailInputIsInvalid
     ? 'form-control invalid'
     : 'form-control';
 
