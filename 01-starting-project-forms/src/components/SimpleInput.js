@@ -50,8 +50,9 @@ const SimpleInput = (props) => {
     event.preventDefault();
 
     setEnteredNameTouched(true);
+    setEnteredEmailTouched(true);
 
-    if (!enteredNameIsValid) {
+    if (!enteredNameIsValid && !enteredEmailIsValid) {
       return;
     }
 
@@ -65,6 +66,8 @@ const SimpleInput = (props) => {
     // the value is bound to the form (value={enteredName})
     setEnteredName('');
     setEnteredNameTouched(false);
+    setEnteredEmail('');
+    setEnteredEmailTouched(false);
   }
 
   // conditional class if enteredNameIsValid is true or false
