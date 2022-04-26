@@ -23,7 +23,6 @@ const SimpleInput = (props) => {
     isValid: enteredEmailIsValid,
     hasError: emailInputHasError,
     valueChangeHandler: emailChangedHandler,
-    // useInput validation function being defined here
     inputBlurHandler: emailBlurHandler,
     reset: resetEmailInput
   } = useInput(value => value.match(mailFormat));
@@ -51,7 +50,7 @@ const SimpleInput = (props) => {
     resetEmailInput();
   }
 
-  // conditional class if enteredNameIsValid is true or false
+  // conditional class if input has an error
   const nameInputClasses = nameInputHasError
     ? 'form-control invalid'
     : 'form-control';
