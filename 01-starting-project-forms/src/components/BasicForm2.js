@@ -24,7 +24,7 @@ const BasicForm2 = (props) => {
   } = useInput(value => value.trim() !== '');
 
   // EMAIL
-  const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const {
     value: enteredEmail,
     isValid: enteredEmailIsValid,

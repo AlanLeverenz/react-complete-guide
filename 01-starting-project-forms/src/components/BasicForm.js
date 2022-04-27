@@ -16,7 +16,7 @@ const BasicForm = (props) => {
   const lnameInputIsInvalid = !enteredLnameIsValid && enteredLnameTouched;
 
   // EMAIL
-  const mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  const mailFormat = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
   const [enteredEmail, setEnteredEmail] = useState('');
   const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
   const enteredEmailIsValid = enteredEmail.match(mailFormat);
@@ -112,7 +112,7 @@ const BasicForm = (props) => {
             onBlur={lnameInputBlurHandler}
             value={enteredLname} />
         </div>
-        <div className={lnameInputClasses}>
+        <div className={emailInputClasses}>
           <label htmlFor='email'>E-Mail Address</label>
           <input
             type='email'
