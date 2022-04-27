@@ -112,7 +112,7 @@ const BasicForm = (props) => {
             onBlur={lnameInputBlurHandler}
             value={enteredLname} />
         </div>
-        <div className='form-control'>
+        <div className={lnameInputClasses}>
           <label htmlFor='email'>E-Mail Address</label>
           <input
             type='email'
