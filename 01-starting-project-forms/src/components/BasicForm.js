@@ -25,30 +25,105 @@ const BasicForm = (props) => {
 
   let formIsValid = false;
 
+  if (enteredFnameIsValid && enteredLnameIsValid && enteredEmailIsValid) {
+    formIsValid = true;
+  }
 
+  // ChangeHandler
+  const fnameInputChangeHandler = (event) => {
+    setEnteredFname(event.target.value);
+  }
+  const lnameInputChangeHandler = (event) => {
+    setEnteredLname(event.target.value);
+  }
+  const emailInputChangeHandler = (event) => {
+    setEnteredEmail(event.target.value);
+  }
 
+  // BlurHandler
+  const fnameInputBlurHandler = (event) => {
+    setEnteredFnameTouched(true);
+  }
+  const lnameInputBlurHandler = (event) => {
+    setEnteredLnameTouched(true);
+  }
+  const emailInputBlurHandler = (event) => {
+    setEnteredEmailTouched(true);
+  }
 
+  // Form Submission Handler
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
 
+    setEnteredFnameTouched(true);
+    setEnteredLnameTouched(true);
+    setEnteredEmailTouched(true);
+
+    if (!enteredFnameIsValid && !enteredLnameIsValid && !enteredEmailIsValid) {
+      return;
+    }
+
+    console.log(enteredFname);
+    console.log(enteredLname);
+    console.log(enteredEmail);
+
+    setEnteredFname('');
+    setEnteredLname('');
+    setEnteredEmail('');
+
+    setEnteredFnameTouched(false);
+    setEnteredLnameTouched(false);
+    setEnteredEmailTouched(false);
+
+  };
+
+  // Input Classes
+  const fnameInputClasses = fnameInputIsInvalid
+    ? 'form-control invalid'
+    : 'form-control';
+
+  const lnameInputClasses = lnameInputIsInvalid
+    ? 'form-control invalid'
+    : 'form-control';
+
+  const emailInputClasses = emailInputIsInvalid
+    ? 'form-control invalid'
+    : 'form-control';
 
 
   return (
-    <form>
+    <form onSubmit={formSubmissionHandler}>
       <div className='control-group'>
-        <div className='form-control'>
+        <div className={fnameInputClasses}>
           <label htmlFor='fname'>First Name</label>
-          <input type='text' id='fname' />
+          <input
+            type='text'
+            id='fname'
+            onChange={fnameInputChangeHandler}
+            onBlur={fnameInputBlurHandler}
+            value={enteredFname} />
+        </div>
+        <div className={lnameInputClasses}>
+          <label htmlFor='lname'>Last Name</label>
+          <input
+            type='text'
+            id='lname'
+            onChange={lnameInputChangeHandler}
+            onBlur={lnameInputBlurHandler}
+            value={enteredLname} />
         </div>
         <div className='form-control'>
-          <label htmlFor='lname'>Last Name</label>
-          <input type='text' id='lname' />
+          <label htmlFor='email'>E-Mail Address</label>
+          <input
+            type='email'
+            id='email'
+            onChange={emailInputChangeHandler}
+            onBlur={emailInputBlurHandler}
+            value={enteredEmail} />
         </div>
-      </div>
-      <div className='form-control'>
-        <label htmlFor='email'>E-Mail Address</label>
-        <input type='email' id='email' />
       </div>
       <div className='form-actions'>
-        <button>Submit</button>
+        <button disabled={!formIsValid}>Submit</button>
       </div>
     </form>
   );
