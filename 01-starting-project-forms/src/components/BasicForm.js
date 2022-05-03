@@ -1,7 +1,37 @@
 import { useState } from 'react';
+import useInput from '../hooks/use-input';
 
+const isNotEmpty = value => value.trim() !== '';
+const isEmail = value => value.includes('@');
 
 const BasicForm = (props) => {
+
+  // using custom hook
+  // destructuring 
+  const {
+    value: firstNameValue,
+    isValid: firstNameIsValid,
+    valueChangeHandler: firstNameChangeHandler,
+    inputBlurHandler: firstNameBlurHandler,
+    reset: resetFirstName
+  } = useInput(isNotEmpty);
+
+  const {
+    value: lastNameValue,
+    isValid: lastNameIsValid,
+    valueChangeHandler: lastNameChangeHandler,
+    inputBlurHandler: lastNameBlurHandler,
+    reset: resetLastName
+  } = useInput(isNotEmpty);
+
+  const {
+    value: emailValue,
+    isValid: emailIsValid,
+    valueChangeHandler: emailChangeHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail
+  } = useInput(isNotEmpty);
+  useInput(isEmail);
 
   // FIRST NAME
   const [enteredFname, setEnteredFname] = useState('');
