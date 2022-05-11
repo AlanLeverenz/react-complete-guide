@@ -62,13 +62,12 @@ const AvailableMeals = () => {
       setIsLoading(false);
     };
 
-    // tests if there was a problem with fetchMeals and catches it
-    try {
-      fetchMeals();
-    } catch (error) {
+    // cannot use try-catch since it will pause the promise
+    // call the function and get the error if there is one
+    fetchMeals().catch((error) => {
       setIsLoading(false);
       setHttpError(error.message);
-    }
+    });
 
   }, []);
 
