@@ -32,6 +32,8 @@ import classes from './AvailableMeals.module.css';
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   // cannot use async await promise with useEffect
   // have to insert it inside the useEffect function as another const
   // this avoids a 'race effect' where fetch repeats itself continuously
@@ -51,10 +53,18 @@ const AvailableMeals = () => {
         })
       }
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
     fetchMeals();
   }, []);
 
+  if (isLoading) {
+    return (
+      <section className={classes.MealsLoading}>
+        <p>Loading...</p>
+      </section>
+    );
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
