@@ -23,7 +23,7 @@ const Cart = (props) => {
 
   const orderHandler = () => {
     setIsCheckout(true);
-  }
+  };
 
   const cartItems = (
     <ul className={classes['cart-items']}>
@@ -45,7 +45,11 @@ const Cart = (props) => {
       <button className={classes['button--alt']} onClick={props.onClose}>
         Close
       </button>
-      {hasItems && <button className={classes.button} onClick={orderHandler}>Order</button>}
+      {hasItems && (
+        <button className={classes.button} onClick={orderHandler}>
+          Order
+        </button>
+      )}
     </div>
   );
 
