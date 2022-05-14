@@ -67,3 +67,11 @@ const Cart = (props) => {
 };
 
 export default Cart;
+
+// {isCheckout && <Checkout onCancel={props.onClose} />}
+// {!isCheckout && modalActions}
+
+// <div className={classes.actions}>
+// <button className={classes['button--alt']} onClick={props.onClose}>Close</button>
+// {hasItems && <button className={classes.button}>Order</button>}
+// </div>

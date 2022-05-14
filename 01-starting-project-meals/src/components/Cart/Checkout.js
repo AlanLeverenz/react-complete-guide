@@ -32,3 +32,5 @@ const Checkout = (props) => {
     </form>
   );
 };
+
+export default Checkout;
