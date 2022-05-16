@@ -2,12 +2,13 @@ import { useRef, useState } from 'react';
 
 import classes from './Checkout.module.css';
 
-// helper functions
+// helper functions outside the default component function
 const isEmpty = value => value.trim() === '';
 const isFiveChars = value => value.trim().length === 5;
 
 const Checkout = (props) => {
 
+  // using state to update form values and determine validity
   const [formInputsValidity, setFormInputsValidity] = useState({
     name: true,
     street: true,
@@ -15,6 +16,7 @@ const Checkout = (props) => {
     postalCode: true
   });
 
+  // using ref to get the form input values
   const nameInputRef = useRef();
   const streetInputRef = useRef();
   const postalInputRef = useRef();
@@ -23,16 +25,19 @@ const Checkout = (props) => {
   const confirmHandler = (event) => {
     event.preventDefault();
 
+    // using ref constants
     const enteredName = nameInputRef.current.value;
     const enteredStreet = streetInputRef.current.value;
     const enteredPostalCode = postalInputRef.current.value;
     const enteredCity = cityInputRef.current.value;
 
+    // and determining if ref values are valid
     const enteredNameIsValid = !isEmpty(enteredName);
     const enteredStreetIsValid = !isEmpty(enteredStreet);
     const enteredCityIsValid = !isEmpty(enteredCity);
     const enteredPostalCodeIsValid = isFiveChars(enteredPostalCode);
 
+    // using state function to set form's overall validity
     setFormInputsValidity({
       name: enteredNameIsValid,
       street: enteredStreetIsValid,
@@ -40,6 +45,7 @@ const Checkout = (props) => {
       postalCode: enteredPostalCodeIsValid
     })
 
+    // sets const for enabling the order to be pushed into the cloud
     const formIsValid =
       enteredNameIsValid &&
       enteredStreetIsValid &&
@@ -54,6 +60,7 @@ const Checkout = (props) => {
 
   };
 
+  // setting control classes depending on input validities
   const nameControlClasses = `${classes.control} ${formInputsValidity.name ? '' : classes.invalid
     }`;
   const streetControlClasses = `${classes.control} ${formInputsValidity.street ? '' : classes.invalid
