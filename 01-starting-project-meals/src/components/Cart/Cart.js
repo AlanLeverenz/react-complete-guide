@@ -29,15 +29,16 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-    await fetch('https://react-meals-c3d1e-default-rtdb.firebaseio.com/orders.json', {
+    await fetch('https://react-http-6b4a6.firebaseio.com/orders.json', {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
-        orderedItems: cartCtx.items
-      })
+        orderedItems: cartCtx.items,
+      }),
     });
     setIsSubmitting(false);
     setDidSubmit(true);
+    cartCtx.clearCart();
   };
 
   const cartItems = (
@@ -76,8 +77,9 @@ const Cart = (props) => {
         <span>{totalAmount}</span>
       </div>
       {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />)}
-      {!isCheckout && modalActions} )
+        <Checkout onConfirm={submitOrderHandler} onCancel={props.onClose} />
+      )}
+      {!isCheckout && modalActions}
     </React.Fragment>
   );
 
@@ -85,7 +87,7 @@ const Cart = (props) => {
 
   const didSubmitModalContent = (
     <React.Fragment>
-      <p>Succesfully sent the order!</p>;
+      <p>Successfully sent the order!</p>
       <div className={classes.actions}>
         <button className={classes.button} onClick={props.onClose}>
           Close
