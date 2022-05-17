@@ -56,7 +56,13 @@ const Checkout = (props) => {
       return;
     }
 
-    // submit cart data
+    // submit user data object to Cart to upload
+    props.onConfirm({
+      name: enteredName,
+      street: enteredStreet,
+      city: enteredCity,
+      postalCode: enteredPostalCode
+    });
 
   };
 
