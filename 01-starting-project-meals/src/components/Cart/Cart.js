@@ -83,7 +83,16 @@ const Cart = (props) => {
 
   const isSubmittingModalContent = <p>Sending order data...</p>;
 
-  const didSubmitModalContent = <p>Succesfully sent the order!</p>;
+  const didSubmitModalContent = (
+    <React.Fragment>
+      <p>Succesfully sent the order!</p>;
+      <div className={classes.actions}>
+        <button className={classes.button} onClick={props.onClose}>
+          Close
+        </button>
+      </div>
+    </React.Fragment>
+  );
 
   return (
     <Modal onClose={props.onClose}>
@@ -95,11 +104,3 @@ const Cart = (props) => {
 };
 
 export default Cart;
-
-// {isCheckout && <Checkout onCancel={props.onClose} />}
-// {!isCheckout && modalActions}
-
-// <div className={classes.actions}>
-// <button className={classes['button--alt']} onClick={props.onClose}>Close</button>
-// {hasItems && <button className={classes.button}>Order</button>}
-// </div>
