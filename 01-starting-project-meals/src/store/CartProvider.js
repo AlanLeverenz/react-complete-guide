@@ -7,6 +7,7 @@ const defaultCartState = {
   totalAmount: 0,
 };
 
+// ADD item
 const cartReducer = (state, action) => {
   if (action.type === 'ADD') {
     const updatedTotalAmount =
@@ -25,6 +26,9 @@ const cartReducer = (state, action) => {
       };
       updatedItems = [...state.items];
       updatedItems[existingCartItemIndex] = updatedItem;
+
+      console.log(`existingCartItem = ${updatedItems[existingCartItemIndex].amount}`);
+
     } else {
       updatedItems = state.items.concat(action.item);
     }
@@ -34,6 +38,8 @@ const cartReducer = (state, action) => {
       totalAmount: updatedTotalAmount,
     };
   }
+
+  // REMOVE item
   if (action.type === 'REMOVE') {
     const existingCartItemIndex = state.items.findIndex(
       (item) => item.id === action.id
@@ -55,6 +61,7 @@ const cartReducer = (state, action) => {
     };
   }
 
+  // RESET THE CART
   // after form is submitted
   if (action.type === 'CLEAR') {
     return defaultCartState;
