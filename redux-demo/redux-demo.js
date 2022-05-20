@@ -11,6 +11,8 @@ const counterReducer = (state = { counter: 0 }, action) => {
 // store learns the reducer function
 const store = redux.createStore(counterReducer);
 
+// console.log(store.getState());
+
 // subscriber function, reaches out to the store to get latest snapshot
 // is triggered whenever state is changed
 const counterSubscriber = () => {
@@ -21,3 +23,6 @@ const counterSubscriber = () => {
 // make redux aware of subscriber function
 // just point at the function, Redux executes it
 store.subscribe(counterSubscriber);
+
+// dispatches an action, a JS object with a type property
+store.dispatch({ type: 'increment' });
