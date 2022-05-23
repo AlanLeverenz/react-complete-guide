@@ -1,6 +1,7 @@
 const redux = require('redux');
 
-// reducer function - same input creates same output
+// reducer function - a JS object with action type properties
+// same input creates same output
 // need default value for state for first time it runs
 const counterReducer = (state = { counter: 0 }, action) => {
   if (action.type === 'increment') {
@@ -24,17 +25,16 @@ const store = redux.createStore(counterReducer);
 
 // console.log(store.getState());
 
-// subscriber function, reaches out to the store to get latest snapshot
-// is triggered whenever state is changed
+// (component) subscriber function
+// is triggered whenever a reducer's state is changed
 const counterSubscriber = () => {
   const latestState = store.getState();
   console.log(latestState);
 }
 
-// make redux aware of subscriber function
-// just point at the function, Redux executes it
+// subscribe method is given the subscriber function
 store.subscribe(counterSubscriber);
 
-// dispatches an action, a JS object with a type property
+// store dispatches an action using its reducer function, 
 store.dispatch({ type: 'increment' });
 store.dispatch({ type: 'decrement' });
