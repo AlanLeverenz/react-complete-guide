@@ -4,6 +4,7 @@ import classes from './Counter.module.css';
 
 const Counter = () => {
 
+  // instantiates the useDispatch hook
   const dispatch = useDispatch();
 
   // useSelector gets specific state values from the store
@@ -11,6 +12,7 @@ const Counter = () => {
   // component is updated whenever state changes
   const counter = useSelector(state => state.counter);
 
+  // dispatch tells the store which action to execute
   const incrementHandler = () => {
     dispatch({ type: 'increment' })
   };
