@@ -44,7 +44,7 @@ class Counter extends Component {
   }
 
   decrementHandler() {
-    this.props.increment();
+    this.props.decrement();
   }
 
   toggleCounterHandler() {
