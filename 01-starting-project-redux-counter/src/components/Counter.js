@@ -14,6 +14,8 @@ const Counter = () => {
   // redux automatically sets up a subscription to the store
   // component is updated whenever state changes
   const counter = useSelector(state => state.counter);
+  // showCounter comes from the store index file
+  const show = useSelector(state => state.showCounter);
 
   // dispatch tells the store which action to execute
   const incrementHandler = () => {
@@ -35,7 +37,7 @@ const Counter = () => {
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={incrementHandler}>Increment</button>
         <button onClick={increaseHandler}>Increase by 10</button>
