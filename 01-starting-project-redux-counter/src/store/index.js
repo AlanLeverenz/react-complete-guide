@@ -5,6 +5,7 @@ const initialState = { counter: 0, showCounter: true };
 // action types stored in counterReducer
 // redux store uses them when an action is dispatched by the subscriber
 
+// always copy new objects in state. Don't mutate state with primitive values
 const counterReducer = (state = initialState, action) => {
   // must include all state objects
   if (action.type === 'increment') {
