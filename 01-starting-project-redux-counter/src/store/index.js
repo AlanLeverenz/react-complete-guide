@@ -1,8 +1,8 @@
 // import { createStore } from 'redux';
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
+// COUNTER SLICE
 const initialCounterState = { counter: 0, showCounter: true };
-
 // can identify parts of the overall state
 // redux toolkit will include the whole state for the update
 // can now change state primitive values in createSlice
@@ -44,6 +44,20 @@ const authSlice = createSlice({
     }
   }
 });
+
+// map of reducers
+const store = configureStore({
+  reducer: {
+    counter: counterSlice.reducer,
+    auth: authSlice.reducer
+  },
+});
+
+// creates a unique ID for each action object created in counterSlice
+export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
+
+export default store;
 
 // action types stored in counterReducer
 // redux store uses them when an action is dispatched by the subscriber
@@ -90,18 +104,3 @@ const authSlice = createSlice({
 // const store = configureStore({
 //   reducer: { counter: counterSlice.reducer }
 // });
-
-
-// map of reducers
-const store = configureStore({
-  reducer: {
-    counter: counterSlice.reducer,
-    auth: authSlice.reducer
-  },
-});
-
-// creates a unique ID for each action object created in counterSlice
-export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
-
-export default store;
