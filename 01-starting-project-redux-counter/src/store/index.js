@@ -21,7 +21,7 @@ const counterSlice = createSlice({
       // action.payload carries the payload from Counter
       state.counter = state.counter + action.payload;
     },
-    toggle(state) {
+    toggleCounter(state) {
       state.showCounter = !state.showCounter;
     }
   }
@@ -37,7 +37,7 @@ const authSlice = createSlice({
   initialState: initialAuthState,
   reducers: {
     login(state) {
-      state.isAuthetnicated = true;
+      state.isAuthenticated = true;
     },
     logout(state) {
       state.isAuthenticated = false;

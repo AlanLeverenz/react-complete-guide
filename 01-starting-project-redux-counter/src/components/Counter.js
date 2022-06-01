@@ -13,10 +13,10 @@ const Counter = () => {
   // useSelector gets specific state values from the store
   // redux automatically sets up a subscription to the store
   // component is updated whenever state changes
-  const counter = useSelector(state => state.counter);
+  const counter = useSelector(state => state.counter.counter);
 
   // showCounter comes from the store index file
-  const show = useSelector(state => state.showCounter);
+  const show = useSelector(state => state.counter.showCounter);
 
   // dispatch tells the store which action to execute
   const incrementHandler = () => {
@@ -36,7 +36,7 @@ const Counter = () => {
 
   const toggleCounterHandler = () => {
     // dispatch({ type: 'toggle' });
-    dispatch(counterActions.toggle());
+    dispatch(counterActions.toggleCounter());
   };
 
   return (
