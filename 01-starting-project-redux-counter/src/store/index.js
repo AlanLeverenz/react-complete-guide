@@ -1,19 +1,17 @@
 // import { createStore } from 'redux';
 import { configureStore } from '@reduxjs/toolkit';
-import counterSlice from './counter';
-import authSlice from './auth';
+import counterReducer from './counter';
+import authReducer from './auth';
 
 // map of reducers
 const store = configureStore({
   reducer: {
-    counter: counterSlice.reducer,
-    auth: authSlice.reducer
+    counter: counterReducer,
+    auth: authReducer
   },
 });
 
 // creates a unique ID for each action object created in counterSlice
-export const counterActions = counterSlice.actions;
-export const authActions = authSlice.actions;
 
 export default store;
 
