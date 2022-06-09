@@ -38,6 +38,7 @@ const cartSlice = createSlice({
   },
 });
 
+// export actions because they are needed for dispatching
 export const cartActions = cartSlice.actions;
 
 export default cartSlice;
