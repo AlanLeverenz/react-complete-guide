@@ -62,14 +62,15 @@ function App() {
           message: 'Sending cart data failed!',
         })
       );
-    }, [cart]);
+    });
+  }, [cart, dispatch]);
 
-    return (
-      <Layout>
-        {showCart && <Cart />}
-        <Products />
-      </Layout>
-    );
-  }
+  return (
+    <Layout>
+      {showCart && <Cart />}
+      <Products />
+    </Layout>
+  );
+}
 
 export default App;
