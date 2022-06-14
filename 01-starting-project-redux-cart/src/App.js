@@ -53,6 +53,7 @@ function App() {
 
     // call sendCartData function
     // cart is the dependency that when changed the fetch function runs
+    // using the catch error method because the function is a promise
     sendCartData().catch((error) => {
       dispatch(
         uiActions.showNotification({
