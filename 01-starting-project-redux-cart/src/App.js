@@ -14,7 +14,7 @@ function App() {
 
   useEffect(() => {
     // overwrites existing fb data
-    fetch('https://react-http-6b4a6.firebaseio.com/cart.json', {
+    fetch('https://react-http-7465d-default-rtdb.firebaseio.com/cart.json', {
       method: 'PUT',
       body: JSON.stringify(cart),
     });
