@@ -7,22 +7,16 @@ import Products from './components/Shop/Products';
 import { uiActions } from './store/ui-slice';
 import Notification from './components/UI/Notification';
 
+let isInitial = true;
+
 function App() {
   const dispatch = useDispatch();
-  // gets the precise state object we need
-  // pass a function that receives the redux state automatically
   const showCart = useSelector((state) => state.ui.cartIsVisible);
-  // sets up a subscription to redux
-  const cart = useSelector(state => state.cart);
-  const notification = useSelector(state => state.ui.notification);
+  const cart = useSelector((state) => state.cart);
+  const notification = useSelector((state) => state.ui.notification);
 
-  // overwrites existing fb data
-  // storing https request as a separate function to use async await
-  // dispatching action to show notifications of http request
   useEffect(() => {
     const sendCartData = async () => {
-
-      // initial status before running https request
       dispatch(
         uiActions.showNotification({
           status: 'pending',
@@ -30,9 +24,8 @@ function App() {
           message: 'Sending cart data!',
         })
       );
-
       const response = await fetch(
-        'https://react-http-7465d-default-rtdb.firebaseio.com/cart.json',
+        'https://react-http-6b4a6.firebaseio.com/cart.json',
         {
           method: 'PUT',
           body: JSON.stringify(cart),
@@ -43,7 +36,6 @@ function App() {
         throw new Error('Sending cart data failed.');
       }
 
-      // if successful
       dispatch(
         uiActions.showNotification({
           status: 'success',
@@ -53,9 +45,11 @@ function App() {
       );
     };
 
-    // call sendCartData function
-    // cart is the dependency that when changed the fetch function runs
-    // using the catch error method because the function is a promise
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+
     sendCartData().catch((error) => {
       dispatch(
         uiActions.showNotification({
@@ -69,12 +63,13 @@ function App() {
 
   return (
     <Fragment>
-      {notification &&
+      {notification && (
         <Notification
           status={notification.status}
           title={notification.title}
           message={notification.message}
-        />}
+        />
+      )}
       <Layout>
         {showCart && <Cart />}
         <Products />
