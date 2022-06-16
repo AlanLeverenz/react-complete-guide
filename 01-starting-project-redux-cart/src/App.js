@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import { uiActions } from './store/ui-slice';
+import Notification from './components/UI/Notification';
 
 function App() {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ function App() {
   const showCart = useSelector((state) => state.ui.cartIsVisible);
   // sets up a subscription to redux
   const cart = useSelector(state => state.cart);
+  const notification = useSelector(state => state.ui.notification);
 
   // overwrites existing fb data
   // storing https request as a separate function to use async await
@@ -66,10 +68,18 @@ function App() {
   }, [cart, dispatch]);
 
   return (
-    <Layout>
-      {showCart && <Cart />}
-      <Products />
-    </Layout>
+    <Fragment>
+      {notification &&
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />}
+      <Layout>
+        {showCart && <Cart />}
+        <Products />
+      </Layout>
+    </Fragment>
   );
 }
 
