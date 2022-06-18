@@ -1,4 +1,4 @@
-import { bindActionCreators, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const uiSlice = createSlice({
   name: 'ui',
@@ -11,10 +11,10 @@ const uiSlice = createSlice({
       state.notification = {
         status: action.payload.status,
         title: action.payload.title,
-        message: bindActionCreators.payload.message,
-      }
-    }
-  }
+        message: action.payload.message,
+      };
+    },
+  },
 });
 
 export const uiActions = uiSlice.actions;

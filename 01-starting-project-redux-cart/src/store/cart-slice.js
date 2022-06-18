@@ -7,7 +7,6 @@ const cartSlice = createSlice({
     totalQuantity: 0,
   },
   reducers: {
-    // to update the store with side effects from ProductItem
     replaceCart(state, action) {
       state.totalQuantity = action.payload.totalQuantity;
       state.items = action.payload.items;
@@ -22,7 +21,7 @@ const cartSlice = createSlice({
           price: newItem.price,
           quantity: 1,
           totalPrice: newItem.price,
-          name: newItem.title
+          name: newItem.title,
         });
       } else {
         existingItem.quantity++;
@@ -31,10 +30,10 @@ const cartSlice = createSlice({
     },
     removeItemFromCart(state, action) {
       const id = action.payload;
-      const existingItem = state.items.find(item => item.id === id);
+      const existingItem = state.items.find((item) => item.id === id);
       state.totalQuantity--;
       if (existingItem.quantity === 1) {
-        state.items = state.items.filter(item => item.id !== id);
+        state.items = state.items.filter((item) => item.id !== id);
       } else {
         existingItem.quantity--;
       }
