@@ -1,15 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Navlink } from 'react-router-dom';
+
+import classes from './MainHeader.module.css';
 
 const MainHeader = () => {
   return (
-    <header>
+    <header className={classes.header}>
       <nav>
         <ul>
           <li>
-            <Link to='/welcome'>Welcome</Link>
+            <Navlink to='/welcome'>Welcome</Navlink>
           </li>
           <li>
-            <Link to='/products'>Products</Link>
+            <Navlink to='/products'>Products</Navlink>
           </li>
         </ul>
       </nav>
