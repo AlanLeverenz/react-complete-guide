@@ -1,7 +1,7 @@
-const QuoteDetails = () => {
+const QuoteDetail = () => {
   return (
-    <h1>Quote Details Page</h1>
+    <h1>Quote Detail Page</h1>
   )
 };
 
-export default QuoteDetails;
+export default QuoteDetail;
