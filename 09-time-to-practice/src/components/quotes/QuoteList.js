@@ -29,7 +29,7 @@ const QuoteList = (props) => {
   const sortedQuotes = sortQuotes(props.quotes, isSortingAscending);
 
   // toggles the sort query parameter in the URL in unison with the button onClick function hander
-  // updates the page whenever the parameters change
+  // updates the page whenever the query parameters change
   const changeSortingHandler = () => {
     history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc'));
   };
