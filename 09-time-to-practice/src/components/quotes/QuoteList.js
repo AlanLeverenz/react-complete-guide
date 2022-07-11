@@ -19,6 +19,8 @@ const QuoteList = (props) => {
   const history = useHistory();
   const location = useLocation();
 
+  console.log(location.pathname);
+
   // default JavaScript constructor class the browser can use
   const queryParams = new URLSearchParams(location.search);
 
@@ -31,7 +33,10 @@ const QuoteList = (props) => {
   // toggles the sort query parameter in the URL in unison with the button onClick function hander
   // updates the page whenever the query parameters change
   const changeSortingHandler = () => {
-    history.push('/quotes?sort=' + (isSortingAscending ? 'desc' : 'asc'));
+    history.push({
+      pathname: location.pathname,
+      search: `?sort=${(isSortingAscending ? 'desc' : 'asc')}`
+    });
   };
 
   return (
