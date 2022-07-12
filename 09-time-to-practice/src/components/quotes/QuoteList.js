@@ -19,7 +19,7 @@ const QuoteList = (props) => {
   const history = useHistory();
   const location = useLocation();
 
-  console.log(location.pathname);
+  // console.log(location.pathname);
 
   // default JavaScript constructor class the browser can use
   const queryParams = new URLSearchParams(location.search);
