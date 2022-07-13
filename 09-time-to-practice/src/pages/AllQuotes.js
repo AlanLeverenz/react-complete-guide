@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
+
 import QuoteList from '../components/quotes/QuoteList';
+import useHttp from '../hooks/use-http';
+import { getAllQuotes } from '../lib/api';
 
 const DUMMY_QUOTES = [
   {
@@ -14,6 +18,15 @@ const DUMMY_QUOTES = [
 ]
 
 const AllQuotes = () => {
+  const { sendRequest, status, data: loadedQuotes, error } = useHttp(getAllQuotes,
+    true
+  );
+
+  // sendRequest is a dependency and runs when the component renders
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
   return (
     <QuoteList quotes={DUMMY_QUOTES} />
   )
