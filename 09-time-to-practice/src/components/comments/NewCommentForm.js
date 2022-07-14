@@ -1,4 +1,5 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
+// import { useParams } from 'react-router-dom';
 
 import useHttp from '../../hooks/use-http';
 import { addComment } from '../../lib/api';
@@ -7,8 +8,17 @@ import LoadingSpinner from '../UI/LoadingSpinner';
 
 const NewCommentForm = (props) => {
   const commentTextRef = useRef();
+  // const params = useParams();
 
-  const { sendRequest, status } = useHttp(addComment);
+  const { sendRequest, status, error } = useHttp(addComment);
+
+  const { onAddedComment } = props;
+
+  useEffect(() => {
+    if (status === 'completed' && !error) {
+      onAddedComment();
+    }
+  }, [status, error, onAddedComment]);
 
   const submitFormHandler = (event) => {
     event.preventDefault();
@@ -17,7 +27,7 @@ const NewCommentForm = (props) => {
 
     // optional: Could validate here
 
-    sendRequest({ text: enteredText })
+    sendRequest({ text: enteredText }, props.quoteId);
   };
 
   return (
