@@ -11,7 +11,3 @@ const Welcome = () => {
 };
 
 export default Welcome;
-
-// <Routes>
-// <Route path="new-user" element={<p>Welcome, new user!</p>} />
-// </Routes>
