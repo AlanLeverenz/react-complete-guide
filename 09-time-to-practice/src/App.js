@@ -12,6 +12,7 @@ const AllQuotes = React.lazy(() => import('./pages/AllQuotes'));
 function App() {
   return (
     <Layout>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
       <Suspense
         fallback={
           <div classname='centered'>
