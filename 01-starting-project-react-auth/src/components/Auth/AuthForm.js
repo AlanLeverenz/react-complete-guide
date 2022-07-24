@@ -24,7 +24,20 @@ const AuthForm = () => {
     if (isLogin) {
 
     } else {
-
+      fetch
+        ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBNxcz0e7Iu1nfjC9P-s3IJOwp05MfS3vM',
+          {
+            method: 'POST',
+            body: JSON.stringify({
+              email: enteredEmail,
+              password: enteredPassword,
+              returnSecurreToken: true
+            }),
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          }
+        );
     }
   };
 
