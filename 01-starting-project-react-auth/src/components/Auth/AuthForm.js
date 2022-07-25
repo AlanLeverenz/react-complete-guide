@@ -8,6 +8,7 @@ const AuthForm = () => {
   const passwordInputref = useRef();
 
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -20,6 +21,8 @@ const AuthForm = () => {
     const enteredPassword = passwordInputref.current.value;
 
     // optional: Add validation
+
+    setIsLoading(true);
 
     if (isLogin) {
 
@@ -38,6 +41,7 @@ const AuthForm = () => {
             }
           }
         ).then(res => {
+          setIsLoading(false);
           if (res.ok) {
             // ...
           } else {
@@ -66,7 +70,8 @@ const AuthForm = () => {
           <input type='password' id='password' required ref={passwordInputref} />
         </div>
         <div className={classes.actions}>
-          <button>{isLogin ? 'Login' : 'Create Account'}</button>
+          {!isLoading && <button>{isLogin ? 'Login' : 'Create Account'}</button>}
+          {isLoading && <p>Sending request...</p>}
           <button
             type='button'
             className={classes.toggle}
