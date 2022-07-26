@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import googleKey from '../../../keys';
+import googleKey from '../../keys';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
@@ -48,17 +48,26 @@ const AuthForm = () => {
     ).then(res => {
       setIsLoading(false);
       if (res.ok) {
-        // ...
+        return res.json();
       } else {
         res.json().then(data => {
           let errorMessage = 'Authentication failed!';
-          if (data && data.error && data.error.message) {
-            errorMessage = data.error.message;
-          }
-          alert(errorMessage);
+          // if (data && data.error && data.error.message) {
+          //   errorMessage = data.error.message;
+          // }
+          // alert(errorMessage);
+
+          throw new Error(errorMessage); //creates another promise
         });
       }
-    });
+    })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => {
+        alert(err.message);
+      })
+      ;
   };
 
   return (
