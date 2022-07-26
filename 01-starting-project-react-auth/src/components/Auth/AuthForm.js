@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-
+import googleKey from '../../../keys';
 import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
@@ -24,37 +24,41 @@ const AuthForm = () => {
 
     setIsLoading(true);
 
-    if (isLogin) {
+    let url;
 
+    if (isLogin) {
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${googleKey}`
     } else {
-      fetch
-        ('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBNxcz0e7Iu1nfjC9P-s3IJOwp05MfS3vM',
-          {
-            method: 'POST',
-            body: JSON.stringify({
-              email: enteredEmail,
-              password: enteredPassword,
-              returnSecurreToken: true
-            }),
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          }
-        ).then(res => {
-          setIsLoading(false);
-          if (res.ok) {
-            // ...
-          } else {
-            res.json().then(data => {
-              let errorMessage = 'Authentication failed!';
-              if (data && data.error && data.error.message) {
-                errorMessage = data.error.message;
-              }
-              alert(errorMessage);
-            });
-          }
-        });
+      url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${googleKey}`
     }
+
+    fetch(
+      url,
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          email: enteredEmail,
+          password: enteredPassword,
+          returnSecurreToken: true
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+    ).then(res => {
+      setIsLoading(false);
+      if (res.ok) {
+        // ...
+      } else {
+        res.json().then(data => {
+          let errorMessage = 'Authentication failed!';
+          if (data && data.error && data.error.message) {
+            errorMessage = data.error.message;
+          }
+          alert(errorMessage);
+        });
+      }
+    });
   };
 
   return (
