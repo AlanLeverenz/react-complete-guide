@@ -44,30 +44,29 @@ const AuthForm = () => {
         headers: {
           'Content-Type': 'application/json'
         }
-      }
-    ).then(res => {
-      setIsLoading(false);
-      if (res.ok) {
-        return res.json();
-      } else {
-        res.json().then(data => {
-          let errorMessage = 'Authentication failed!';
-          // if (data && data.error && data.error.message) {
-          //   errorMessage = data.error.message;
-          // }
-          // alert(errorMessage);
+      })
+      .then(res => {
+        setIsLoading(false);
+        if (res.ok) {
+          return res.json();
+        } else {
+          res.json().then(data => {
+            let errorMessage = 'Authentication failed!';
+            // if (data && data.error && data.error.message) {
+            //   errorMessage = data.error.message;
+            // }
+            // alert(errorMessage);
 
-          throw new Error(errorMessage); //creates another promise
-        });
-      }
-    })
+            throw new Error(errorMessage); //creates another promise
+          });
+        }
+      })
       .then((data) => {
         console.log(data);
       })
       .catch((err) => {
         alert(err.message);
-      })
-      ;
+      });
   };
 
   return (
