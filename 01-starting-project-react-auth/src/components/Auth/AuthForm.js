@@ -1,9 +1,12 @@
 import { useState, useRef, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import googleKey from '../../keys';
 import classes from './AuthForm.module.css';
 import AuthContext from '../../store/auth-context';
 
 const AuthForm = () => {
+  const history = useHistory();
 
   const emailInputRef = useRef();
   const passwordInputref = useRef();
@@ -66,6 +69,7 @@ const AuthForm = () => {
       })
       .then((data) => {
         authCtx.login(data.idToken); // Provider has the Firebase idToken
+        history.replace('/'); // cannot use back button
       })
       .catch((err) => {
         alert(err.message);
