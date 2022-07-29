@@ -45,7 +45,7 @@ const AuthForm = () => {
         body: JSON.stringify({
           email: enteredEmail,
           password: enteredPassword,
-          returnSecurreToken: true
+          returnSecureToken: true
         }),
         headers: {
           'Content-Type': 'application/json'
