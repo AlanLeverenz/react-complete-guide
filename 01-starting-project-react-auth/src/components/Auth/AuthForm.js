@@ -68,7 +68,10 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken); // Provider has the Firebase idToken
+        const expirationTime = new Date(new Date().getTime() + (+data.expiresIn * 1000)); // + converts string to number and milliseconds
+        authCtx.login(data.idToken, expirationTime.toISOString());
+        // Provider has the Firebase idToken
+        //convert to string for auth-context helper function
         history.replace('/'); // cannot use back button
       })
       .catch((err) => {
