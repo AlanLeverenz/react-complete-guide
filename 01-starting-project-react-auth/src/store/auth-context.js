@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 
 let logoutTimer; // global variable in this file
 
@@ -53,14 +53,15 @@ export const AuthContextProvider = (props) => {
 
   const userIsLoggedIn = !!token; // !! converts truthy to boolean value
 
-  const logoutHandler = () => {
+  const logoutHandler = useCallback(() => { // avoids infinite loop
     setToken(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('expirationTime');
 
     if (logoutTimer) {
       clearTimeout(logoutTimer)
     }
-  };
+  }, []);
 
   const loginHandler = (token, expirationTime) => {
     setToken(token);
@@ -72,12 +73,13 @@ export const AuthContextProvider = (props) => {
     logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 
-  // happens when page loads and gets the remaining logged in duration
+  // happens when page loads and gets the remaining token duration before it expires
   useEffect(() => {
     if (tokenData) {
+      console.log(tokenData.duration);
       logoutTimer = setTimeout(logoutHandler, tokenData.duration);
     }
-  }, [tokenData]);
+  }, [tokenData, logoutHandler]);
 
   const contextValue = {
     token: token,
