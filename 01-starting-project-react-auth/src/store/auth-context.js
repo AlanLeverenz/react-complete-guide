@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+let logoutTimer; // global variable in this file
+
 const AuthContext = React.createContext({
   // property values
   token: '',
@@ -18,26 +20,51 @@ const calculateRemainingTime = (expirationTime) => {
   return remainingDuration;
 }
 
+const retrieveStoredToken = () => {
+  const storedToken = localStorage.getItem('token');
+  const storedExpirationDate = localStorage.getItem('expirationTime');
+
+  const remainingTime = calculateRemainingTime(storedExpirationDate);
+
+  // return nothing if less than one hour of remaining time left
+  if (remainingTime <= 60000) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expirationtime');
+    return null;
+  }
+
+  // return token and duration if more than one hour
+  return {
+    token: storedToken,
+    duration: remainingTime
+  };
+};
+
 // setup as a wrapper for child components
 // export as a named const
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem('token');
-  const [token, setToken] = useState(initialToken)
+  const [token, setToken] = useState(initialToken);
 
   const userIsLoggedIn = !!token; // !! converts truthy to boolean value
 
   const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem('token');
+
+    if (logoutTimer) {
+      clearTimeout(logoutTimer)
+    }
   };
 
   const loginHandler = (token, expirationTime) => {
     setToken(token);
     localStorage.setItem('token', token);
+    localStorage.setItem('expirationTime', expirationTime);
 
     const remainingTime = calculateRemainingTime(expirationTime);
 
-    setTimeout(logoutHandler, remainingTime);
+    logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 
 
