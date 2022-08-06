@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import { Fragment } from 'react';
 
+// Using Link allows us to have a single page application
+// Keeps a new page from being rendered
 function NewsPage() {
   return (
     <Fragment>
