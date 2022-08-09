@@ -11,8 +11,8 @@ const DUMMY_MEETUPS = [
   {
     id: 'm2',
     title: 'A Second Meetup',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg',
-    address: 'Central Park, New York City',
+    image: 'https://pix10.agoda.net/geo/city/318/1_318_02.jpg?ca=6&ce=1&s=1920x822',
+    address: 'New York City',
     description: 'This is a second meetup!'
   }
 ]
