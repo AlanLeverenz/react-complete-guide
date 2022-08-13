@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import MeetupList from '../components/meetups/MeetupList';
 
 const DUMMY_MEETUPS = [
@@ -18,18 +18,33 @@ const DUMMY_MEETUPS = [
   }
 ]
 
-function HomePage() {
+function HomePage(props) {
 
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
+  // const [loadedMeetups, setLoadedMeetups] = useState([]);
 
-  useEffect(() => {
-    // send an http request and fetch data
-    setLoadedMeetups(DUMMY_MEETUPS);
-  }, []);
+  // // useEffect runs after the component executes
+  // // two component render cycles (empty and then loaded)
+  // // nextJS only shows source for the first render, not the second
+  // useEffect(() => {
+  //   // send an http request and fetch data
+  //   setLoadedMeetups(DUMMY_MEETUPS);
+  // }, []);
 
   return (
-    <MeetupList meetups={loadedMeetups} />
+    <MeetupList meetups={props.meetups} />
   )
 }
+
+// works in pages for pre-rendering before the component function runs
+// code that runs here doesn't run on the client side, only on the server
+// it's executed during the build cycle
+export async function getStaticProps() {
+  // fetch data from an API
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    }
+  };
+};
 
 export default HomePage
