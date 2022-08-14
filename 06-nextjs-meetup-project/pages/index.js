@@ -35,18 +35,35 @@ function HomePage(props) {
   )
 }
 
-// works in pages for pre-rendering before the component function runs
-// code that runs here doesn't run on the client, only on the server
-// it's executed during the build cycle
-// revalidate sets timer for re-pregenerating data on the server
-export async function getStaticProps() {
+// alternative to getStaticProps
+// does not run during build process, but on the server after deployment
+// pre-generated for every request
+export async function getServerSideProps(context) {
+  const req = context.req;
+  const res = context.res;
+
   // fetch data from an API
   return {
     props: {
       meetups: DUMMY_MEETUPS
-    },
-    revalidate: 10
-  };
-};
+    }
+  }
+}
+
+
+
+// works in pages for pre-rendering before the component function runs
+// code that runs here doesn't run on the client, only on the server
+// it's executed during the build cycle
+// revalidate sets timer for re-pregenerating data on the server
+// export async function getStaticProps() {
+//   // fetch data from an API
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS
+//     },
+//     revalidate: 1
+//   };
+// };
 
 export default HomePage
