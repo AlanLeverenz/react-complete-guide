@@ -38,12 +38,14 @@ function HomePage(props) {
 // works in pages for pre-rendering before the component function runs
 // code that runs here doesn't run on the client side, only on the server
 // it's executed during the build cycle
+// revalidate sets timer for re-generating data on the server
 export async function getStaticProps() {
   // fetch data from an API
   return {
     props: {
       meetups: DUMMY_MEETUPS
-    }
+    },
+    revalidate: 10
   };
 };
 
