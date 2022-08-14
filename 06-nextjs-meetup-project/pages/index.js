@@ -38,17 +38,17 @@ function HomePage(props) {
 // alternative to getStaticProps
 // does not run during build process, but on the server after deployment
 // pre-generated for every request
-export async function getServerSideProps(context) {
-  const req = context.req;
-  const res = context.res;
+// export async function getServerSideProps(context) {
+//   const req = context.req;
+//   const res = context.res;
 
-  // fetch data from an API
-  return {
-    props: {
-      meetups: DUMMY_MEETUPS
-    }
-  }
-}
+//   // fetch data from an API
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS
+//     }
+//   }
+// }
 
 
 
@@ -56,14 +56,16 @@ export async function getServerSideProps(context) {
 // code that runs here doesn't run on the client, only on the server
 // it's executed during the build cycle
 // revalidate sets timer for re-pregenerating data on the server
-// export async function getStaticProps() {
-//   // fetch data from an API
-//   return {
-//     props: {
-//       meetups: DUMMY_MEETUPS
-//     },
-//     revalidate: 1
-//   };
-// };
+// can use for storing CDN's in cache
+
+export async function getStaticProps() {
+  // fetch data from an API
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    },
+    revalidate: 1
+  };
+};
 
 export default HomePage
