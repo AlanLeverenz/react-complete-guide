@@ -8,6 +8,7 @@ import MDB_password from '../../keys';
 
 async function handler(req, res) {
   if (req.method === 'POST') {
+    console.log('API POST');
     const data = req.body;
     // const { title, image, address, description } = data;
 
