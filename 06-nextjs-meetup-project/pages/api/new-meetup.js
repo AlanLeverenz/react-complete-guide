@@ -12,7 +12,7 @@ async function handler(req, res) {
     // const { title, image, address, description } = data;
 
     const uri = `mongodb+srv://${MDB_username}:${MDB_password}@cluster0.bk62d2e.mongodb.net/?retryWrites=true&w=majority`;
-    const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
+    const client = await new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, serverApi: ServerApiVersion.v1 });
 
     // const client = await MongoClient.connect(`mongodb+srv://${MDB_username}:${Newlife70MDB}@cluster0.bk62d2e.mongodb.net/?retryWrites=true&w=majority`);
 
