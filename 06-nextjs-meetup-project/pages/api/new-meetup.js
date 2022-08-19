@@ -52,4 +52,5 @@ export default handler;
 // });
 
 // IMPORT CLI
-// mongoimport --uri "mongodb://alanleverenz:Newlife70MDB@atlas-host1:27017,atlas-host2:27017,atlas-host3:27017/meetups?ssl=true&replicaSet=myAtlasRS&authSource=admin" --collection meetups --drop --file /Users/alanleverenz/development/react-complete-guide-2/06-nextjs-meetup-project/import.json
+// mongoimport --uri "mongodb://alanleverenz:Newlife70MDB@atlas-host1:27017,atlas-host2:27017,atlas-host3:27017/meetups?ssl=true&replicaSet=myAtlasRS&authSource=admin" --collection meetups --jsonArray --drop --file /Users/alanleverenz/development/react-complete-guide-2/06-nextjs-meetup-project/import.json
+
