@@ -1,0 +1,16 @@
+[
+  {
+    "id": "m1",
+    "title": "First Meetup",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg",
+    "address": "Munich, Germany",
+    "description": "The first meetup. Wish I had been there before."
+  },
+  {
+    "id": "m2",
+    "title": "Second Meetup",
+    "image": "https://pix10.agoda.net/geo/city/318/1_318_02.jpg?ca=6&ce=1&s=1920x822",
+    "address": "New York City",
+    "description": "This is a second meetup, right in my hometown!"
+  }
+]
