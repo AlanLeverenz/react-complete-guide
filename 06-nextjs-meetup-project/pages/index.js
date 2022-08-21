@@ -1,4 +1,6 @@
 // import { useEffect, useState } from 'react';
+import { MongoClient } from 'mongodb';
+
 import MeetupList from '../components/meetups/MeetupList';
 
 const DUMMY_MEETUPS = [
@@ -50,8 +52,6 @@ function HomePage(props) {
 //   }
 // }
 
-
-
 // works in pages for pre-rendering before the component function runs
 // code that runs here doesn't run on the client, only on the server
 // it's executed during the build cycle
@@ -60,6 +60,9 @@ function HomePage(props) {
 
 export async function getStaticProps() {
   // fetch data from an API
+
+  MongoClient.connect();
+
   return {
     props: {
       meetups: DUMMY_MEETUPS
