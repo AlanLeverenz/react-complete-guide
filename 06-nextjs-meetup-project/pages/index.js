@@ -69,6 +69,7 @@ export async function getStaticProps() {
 
   // finds all collections
   const meetups = await meetupsCollection.find().toArray();
+  // const meetups = DUMMY_MEETUPS;
 
   client.close();
 
