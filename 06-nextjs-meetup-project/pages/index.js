@@ -1,8 +1,11 @@
 // import { useEffect, useState } from 'react';
-import { MongoClient } from 'mongodb';
 
+// Head allows metadata to be inserted in the Head section
+import Head from 'next/head';
+import { MongoClient } from 'mongodb';
 import MeetupList from '../components/meetups/MeetupList';
 import keys from '../keys';
+import { Fragment } from 'react';
 
 // const DUMMY_MEETUPS = [
 //   {
@@ -24,7 +27,6 @@ import keys from '../keys';
 function HomePage(props) {
 
   // const [loadedMeetups, setLoadedMeetups] = useState([]);
-
   // // useEffect runs after the component executes
   // // two component render cycles (empty and then loaded)
   // // nextJS only shows source for the first render, not the second
@@ -34,7 +36,12 @@ function HomePage(props) {
   // }, []);
 
   return (
-    <MeetupList meetups={props.meetups} />
+    <Fragment>
+      <Head>
+        <title>React Meetups</title>
+      </Head>
+      <MeetupList meetups={props.meetups} />
+    </Fragment>
   )
 }
 
